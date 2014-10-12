@@ -9,16 +9,17 @@
 <left>429</left>
 <top>349</top>
 <width>228</width>
-<height>177</height>
+<height>192</height>
 <sql_create_table>CREATE TABLE `library` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `alias` varchar(256) DEFAULT NULL,
   `name` varchar(256) DEFAULT NULL,
   `author` varchar(256) DEFAULT NULL,
+  `link` varchar(256) DEFAULT NULL,
   `version` varchar(16) NOT NULL DEFAULT '0',
   `is_error` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="rel_subscriber_library" view="standard">
 <left>99</left>
@@ -36,7 +37,7 @@
   KEY `rel_subscriber_library_library_id` (`library_id`),
   CONSTRAINT `rel_subscriber_library_library_id` FOREIGN KEY (`library_id`) REFERENCES `library` (`id`),
   CONSTRAINT `rel_subscriber_library_subscriber_id` FOREIGN KEY (`subscriber_id`) REFERENCES `subscriber` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="subscriber" view="standard">
 <left>426</left>
@@ -49,7 +50,20 @@
   `registration_date` datetime DEFAULT NULL,
   `notification_count` int(5) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="mailing_queue" view="standard">
+<left>752</left>
+<top>309</top>
+<width>223</width>
+<height>107</height>
+<sql_create_table>CREATE TABLE `mailing_queue` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `library_id` int(11) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `mailing_queue_library_id` (`library_id`),
+  CONSTRAINT `mailing_queue_library_id` FOREIGN KEY (`library_id`) REFERENCES `library` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 </tables>
 </canvas>

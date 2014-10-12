@@ -39,13 +39,16 @@ if ($libraries) {
 		}
 	}
 
-	if ($libChanges) { echo '<pre>' . var_dump($libChanges);
-		// write to queue to send email for the new version
-
+	if ($libChanges) {
 		// update subscriber version for that lib
+		$stRel = $conn->prepare('update rel_subscriber_library set subscriber_version = ?, notification_date = ? where library_id = ?');
+
+		// write to queue to notify by email
+		$stQueue = $conn->prepare('insert into mailing_queue(library_id) values(?)');
+
 		foreach ($libChanges as $libChange) {
-			$st = $conn->prepare('update rel_subscriber_library set subscriber_version = ?, notification_date = ? where library_id = ?');
-			$st->execute([$libChange['version'], date('Y-m-d H:i:s'), $libChange['id']]);
+			$stRel->execute([$libChange['version'], date('Y-m-d H:i:s'), $libChange['id']]);
+			$stQueue->execute([$libChange['id']]);
 		}
 	}
 }
