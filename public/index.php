@@ -31,7 +31,7 @@
 			<div class="row">
 				<div class="col-md-offset-2 col-md-8">
 					<div class="section-heading">
-						<h2>About us</h2>
+						<h2>Libs</h2>
 						<p>jQuery v<span data-async-url="/process.php?lib=jquery"></span> <span class="muted">jQuery Foundation, Inc.</span></p>
 					</div>
 				</div>
