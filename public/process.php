@@ -1,11 +1,8 @@
 <?php
 
-//$result = [];
 $result = '';
 
-if (!isset($_GET['lib'])) {
-	return false;
-} else {
+if (isset($_GET['lib'])) {
 	switch ($_GET['lib']) {
 		case 'jquery':
 			$libinfo = include("../libs/jquery.php");
@@ -14,12 +11,20 @@ if (!isset($_GET['lib'])) {
 			$libVendor = $libinfo['vendor'];
 			$libVersion = $libinfo['version']();
 
-//			$result = ['version' => $libVersion];
 			$result = $libVersion;
+
+			break;
+		case 'bootstrap':
+			$libinfo = include("../libs/bootstrap.php");
+
+			$libName = $libinfo['name'];
+			$libVendor = $libinfo['vendor'];
+			$libVersion = $libinfo['version']();
+
+			$result = $libVersion;
+
+			break;
 	}
 }
-
-//header('Content-Type: application/json');
-//echo json_encode($result);
 
 echo $result;

@@ -33,6 +33,7 @@
 					<div class="section-heading">
 						<h2>Libs</h2>
 						<p>jQuery v<span data-async-url="/process.php?lib=jquery"></span> <span class="muted">jQuery Foundation, Inc.</span></p>
+						<p>Twitter Bootstrap v<span data-async-url="/process.php?lib=bootstrap"></span> <span class="muted">Twitter, Inc.</span></p>
 					</div>
 				</div>
 			</div>
