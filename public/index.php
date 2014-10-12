@@ -32,8 +32,14 @@
 				<div class="col-md-offset-2 col-md-8">
 					<div class="section-heading">
 						<h2>Libs</h2>
-						<p>jQuery v<span data-async-url="/process.php?lib=jquery"></span> <span class="muted">jQuery Foundation, Inc.</span></p>
-						<p>Twitter Bootstrap v<span data-async-url="/process.php?lib=bootstrap"></span> <span class="muted">Twitter, Inc.</span></p>
+						<p>
+							jQuery v<span data-async-url="/process.php?lib=jquery"></span> <span class="muted">jQuery Foundation, Inc.</span>
+							<span class="label label-success">Subscribed</span>
+						</p>
+						<p>
+							Twitter Bootstrap v<span data-async-url="/process.php?lib=bootstrap"></span> <span class="muted">Twitter, Inc.</span>
+							<a class="btn btn-xs btn-default">Subscribe</a>
+						</p>
 					</div>
 				</div>
 			</div>
