@@ -16,41 +16,58 @@ if (!empty($phpInput)) {
 			$st = $conn->prepare('select * from subscriber where email = ?;');
 			$st->execute([$data['email']]);
 			$subscriber = $st->fetchColumn();
+			$subscriptionList = [];
 
 			if ($subscriber === false) {
 				$st = $conn->prepare('insert into subscriber(email, registration_date) values(?, ?);');
 				$st->execute([$data['email'], date('Y-m-d H:i:s')]);
 
 				$subscriberId = $conn->lastInsertId();
+			} else {
+				$subscriberId = $subscriber;
 
 				if (count($data['channels'])) {
-					$stInsert = $conn->prepare('
-						insert into rel_subscriber_library(subscriber_id, library_id, subscriber_version, notification_date) values(?, ?, ?, ?);
-					');
-					$st = $conn->prepare('select * from library;');
-					$st->execute();
-					$libraries = $st->fetchAll(PDO::FETCH_ASSOC);
+					$stSubscriptions = $conn->prepare('select * from rel_subscriber_library where subscriber_id = ?;');
+					$stSubscriptions->execute([$subscriberId]);
+					$subscriptions = $stSubscriptions->fetchAll(PDO::FETCH_ASSOC);
 
-					if (count($libraries)) {
-						foreach ($libraries as $library) {
-							if (array_key_exists($library['alias'], $data['channels'])) {
-								$stInsert->execute([
-									$subscriberId,
-									$library['id'],
-									$data['channels'][$library['alias']],
-									date('Y-m-d H:i:s')
-								]);
-							}
+					if (count($subscriptions)) {
+						foreach ($subscriptions as $subscription) {
+							array_push($subscriptionList, $subscription['library_id']);
 						}
 					}
-
-					$result = [
-						'status' => 'success',
-						'message' => 'You are successfully subscribed to the selected libraries.'
-					];
 				}
-			} else {
-				die($subscriber);
+			}
+
+			if (count($data['channels'])) {
+				$stInsert = $conn->prepare('
+					insert into rel_subscriber_library(subscriber_id, library_id, subscriber_version, notification_date) values(?, ?, ?, ?);
+				');
+				$st = $conn->prepare('select * from library;');
+				$st->execute();
+				$libraries = $st->fetchAll(PDO::FETCH_ASSOC);
+
+				if (count($libraries)) {
+					foreach ($libraries as $library) {
+						if (in_array($library['id'], $subscriptionList)) {
+							continue;
+						}
+
+						if (array_key_exists($library['alias'], $data['channels'])) {
+							$stInsert->execute([
+								$subscriberId,
+								$library['id'],
+								$data['channels'][$library['alias']],
+								date('Y-m-d H:i:s')
+							]);
+						}
+					}
+				}
+
+				$result = [
+					'status' => 'success',
+					'message' => 'You are successfully subscribed to the selected libraries.'
+				];
 			}
 		} else {
 			$result['message'] = 'Email invalid';
