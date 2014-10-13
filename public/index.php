@@ -22,12 +22,8 @@ $libraries = include('../general/get-libraries.php');
 						<div class="brand">
 							<h1><a href="/">Subscribe to Lib</a></h1>
 							<div class="line-spacer"></div>
-							<p>
-								<span>
-									Still not using Bower, Grunt or Yeoman? <br>
-									So this tool for you!
-								</span>
-							</p>
+							<p><span>Not using Bower, Grunt or Yeoman?</span></p>
+							<p><span>So this tool for you!</span></p>
 						</div>
 					</div>
 				</div>
@@ -41,11 +37,14 @@ $libraries = include('../general/get-libraries.php');
 				<div class="col-md-offset-3 col-md-6">
 					<h1>BE NOTIFIED</h1>
 
-					<input class="form-control input-lg" placeholder="Your Email Address">
+					<form class="form-horizontal">
+						<div class="form-group has-feedback">
+							<input name="email" type="email" class="form-control input-lg email-input" placeholder="Your Email Address">
+							<span class="glyphicon glyphicon-remove form-control-feedback hide"></span>
+						</div>
+					</form>
 
-					<div class="well-sm">
-						<a class="btn btn-primary btn-lg" type="button">Subscribe</a>
-					</div>
+					<a class="btn btn-primary btn-lg big-subscribe-button" type="button">Subscribe</a>
 				</div>
 			</div>
 		</div>
