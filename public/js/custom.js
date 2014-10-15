@@ -1,5 +1,8 @@
 $(function() {
-	var list = simpleStorage.index(),
+	var subscriptionEmail = 'subscription-email',
+		list = simpleStorage.index(),
+		subscribeSection = $('#subscribe'),
+		alreadySubscribedSection = $('#already-subscribed'),
 		bigSubscribeButton = $('.big-subscribe-button'),
 		subscribeButton = $('.subscribe-button'),
 		emailField = $('.email-input'),
@@ -41,7 +44,6 @@ $(function() {
 				.find('.glyphicon')
 				.removeClass('hide');
 
-
 			if (state) {
 				simpleStorage.set(alias, version);
 			}
@@ -78,7 +80,7 @@ $(function() {
 
 			for (var index in list) {
 				if (list.hasOwnProperty(index)) {
-					if (list[index] == 'subscription-email') {
+					if (list[index] == subscriptionEmail) {
 						continue;
 					}
 
@@ -143,13 +145,36 @@ $(function() {
 				dataType: 'json',
 				contentType: 'application/json; charset=UTF-8',
 				complete: function(result) {
-//					alert(result.message)
+					simpleStorage.set(subscriptionEmail, email);
+					$(document).trigger('subscribed');
+
+					subscribeSection.fadeOut('slow', function() {
+						alreadySubscribedSection.show();
+					});
 				}
 			});
 		} else {
 			emailField.focus();
 		}
 	});
+
+	$(document).on('subscribed', function() {
+		subscribeSection.hide();
+		alreadySubscribedSection.show();
+
+		$('.subscription-email').text(simpleStorage.get(subscriptionEmail));
+	});
+
+	$(document).on('unsubscribed', function() {
+		subscribeSection.show();
+		alreadySubscribedSection.hide();
+	});
+
+	if (simpleStorage.get(subscriptionEmail) == 'undefined') {
+		$(document).trigger('unsubscribed');
+	} else {
+		$(document).trigger('subscribed');
+	}
 });
 
 
