@@ -1,6 +1,5 @@
 <?php
 
-require_once('../general/config.php');
 require_once('../general/get-connection.php');
 require_once('../vendor/email.php');
 
@@ -16,10 +15,6 @@ $st = $conn->prepare('
 $st->execute();
 $subscribers = $st->fetchAll(PDO::FETCH_ASSOC);
 
-echo '<pre>';
-print_r($subscribers);
-echo '</pre>';
-
 if (count($subscribers)) {
 	foreach ($subscribers as $subscriber) {
 		$email = $subscriber['email'];
@@ -28,10 +23,10 @@ if (count($subscribers)) {
 		$template = file_get_contents('../template/welcome.htm');
 		$template = str_replace('{{libs}}', $libs, $template);
 
-		$mail = new Email('smtp.mail.ru', 465);
+		$mail = new Email($smtpHost, $smtpPort);
 		$mail->setProtocol(Email::SSL);
 		$mail->setLogin($smtpEmail, $smtpPassword);
-		$mail->addTo('xquack@gmail.com');
+		$mail->addTo($tempTo);
 		$mail->setFrom($smtpEmail);
 		$mail->setSubject('Yoyo Subscription');
 		$mail->setMessage($template, true);
@@ -41,8 +36,8 @@ if (count($subscribers)) {
 			$st->execute([$email]);
 		}
 
-		echo '<pre>';
-		print_r($mail->getLog());
-		echo '</pre>'; break;
+//		echo '<pre>';
+//		print_r($mail->getLog());
+//		echo '</pre>';
 	}
 }

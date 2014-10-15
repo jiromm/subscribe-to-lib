@@ -1,8 +1,7 @@
 <?php
 
-const LIB_ERROR_VERSION = 1;
-
-$conn = new PDO("mysql:dbname=subscribe-to-lib", "root", "");
+require_once('../general/get-connection.php');
+require_once('../vendor/email.php');
 
 $st = $conn->prepare('
 	select * from mailing_queue
@@ -29,13 +28,27 @@ if ($subscribers) {
 	}
 
 	foreach ($listBySubscriber as $email => $subscriber) {
-		echo "<p>{$email}</p>";
-		echo '<ul>';
+		$libs = '<ul>';
 
-		foreach ($subscriber as $libs) {
-			echo "<li><a href='{$libs['link']}'>{$libs['name']} v{$libs['version']} {$libs['author']}</a></li>";
+		foreach ($subscriber as $lib) {
+			$libs .= "<li><a href='{$lib['link']}'>{$lib['name']} v{$lib['version']}</a></li>";
 		}
 
-		echo '</ul>';
+		$libs .= '</ul>';
+
+		$template = file_get_contents('../template/update.htm');
+		$template = str_replace('{{libs}}', $libs, $template);
+
+		$mail = new Email($smtpHost, $smtpPort);
+		$mail->setProtocol(Email::SSL);
+		$mail->setLogin($smtpEmail, $smtpPassword);
+		$mail->addTo($tempTo);
+		$mail->setFrom($smtpEmail);
+		$mail->setSubject('Yoyo Updates');
+		$mail->setMessage($template, true);
+
+		if ($mail->send()) {
+			// do nothing
+		}
 	}
 }

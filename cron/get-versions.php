@@ -1,8 +1,8 @@
 <?php
 
-const LIB_ERROR_VERSION = 1;
+require_once('../general/get-connection.php');
 
-$conn = new PDO("mysql:dbname=subscribe-to-lib", "root", "");
+const LIB_ERROR_VERSION = 1;
 
 $st = $conn->prepare('select * from library;');
 $st->execute();
