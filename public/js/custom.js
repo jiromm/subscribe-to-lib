@@ -66,7 +66,7 @@ $(function() {
 				data: JSON.stringify(data),
 				dataType: 'json',
 				contentType: 'application/json; charset=UTF-8',
-				complete: function(result) { console.log(result);
+				success: function(result) {
 					if (result.status == 'success') {
 						simpleStorage.set(subscriptionEmail, email);
 						$(document).trigger('subscribed');
@@ -75,7 +75,7 @@ $(function() {
 							alreadySubscribedSection.show();
 						});
 					} else {
-//						alert('Server problems. Try later!')
+						alert('Server problems. Try later!')
 					}
 				}
 			});

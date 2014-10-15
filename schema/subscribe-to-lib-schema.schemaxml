@@ -37,7 +37,7 @@
   KEY `rel_subscriber_library_library_id` (`library_id`),
   CONSTRAINT `rel_subscriber_library_library_id` FOREIGN KEY (`library_id`) REFERENCES `library` (`id`),
   CONSTRAINT `rel_subscriber_library_subscriber_id` FOREIGN KEY (`subscriber_id`) REFERENCES `subscriber` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="subscriber" view="standard">
 <left>426</left>
@@ -49,8 +49,9 @@
   `email` varchar(256) DEFAULT NULL,
   `registration_date` datetime DEFAULT NULL,
   `notification_count` int(5) unsigned NOT NULL DEFAULT '0',
+  `welcome_email_sent` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="mailing_queue" view="standard">
 <left>752</left>
@@ -63,7 +64,7 @@
   PRIMARY KEY (`id`),
   KEY `mailing_queue_library_id` (`library_id`),
   CONSTRAINT `mailing_queue_library_id` FOREIGN KEY (`library_id`) REFERENCES `library` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 </tables>
 </canvas>
