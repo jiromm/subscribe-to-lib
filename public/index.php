@@ -31,11 +31,24 @@ $libraries = include('../general/get-libraries.php');
 		</div>
 	</div>
 
-	<section>
+	<section id="already-subscribed">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-offset-3 col-md-6">
-					<h1>BE NOTIFIED</h1>
+					<h1>Already Subscribed</h1>
+					<h3>
+						<span class="text-muted">With</span> <span class="subscription-email"></span>
+					</h3>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="subscribe">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-offset-3 col-md-6">
+					<h1>Be Notified</h1>
 
 					<form class="form-horizontal">
 						<div class="form-group has-feedback">
