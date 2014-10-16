@@ -2,7 +2,11 @@
 
 require_once('get-connection.php');
 
-$st = $conn->prepare('select * from library;');
-$st->execute();
+try {
+	$st = $conn->prepare('select * from library;');
+	$st->execute();
 
-return $st->fetchAll(PDO::FETCH_ASSOC);
+	return $st->fetchAll(PDO::FETCH_ASSOC);
+} catch (Exception $ex) {
+	return [];
+}

@@ -3,41 +3,45 @@
 require_once('../general/get-connection.php');
 require_once('../vendor/email.php');
 
-$conn->exec('set session group_concat_max_len = 1000000;');
+try {
+	$conn->exec('set session group_concat_max_len = 1000000;');
 
-$st = $conn->prepare('
-	select subscriber.email as email, group_concat(library.name) as libs from subscriber
-		right join rel_subscriber_library on subscriber.id = rel_subscriber_library.subscriber_id
-		left join library on rel_subscriber_library.library_id = library.id
-	where subscriber.welcome_email_sent = 0
-	group by subscriber.email;
-');
-$st->execute();
-$subscribers = $st->fetchAll(PDO::FETCH_ASSOC);
+	$st = $conn->prepare('
+		select subscriber.email as email, group_concat(library.name) as libs from subscriber
+			right join rel_subscriber_library on subscriber.id = rel_subscriber_library.subscriber_id
+			left join library on rel_subscriber_library.library_id = library.id
+		where subscriber.welcome_email_sent = 0
+		group by subscriber.email;
+	');
+	$st->execute();
+	$subscribers = $st->fetchAll(PDO::FETCH_ASSOC);
 
-if (count($subscribers)) {
-	foreach ($subscribers as $subscriber) {
-		$email = $subscriber['email'];
-		$libs = str_replace(',', '<br>', $subscriber['libs']);
+	if (count($subscribers)) {
+		foreach ($subscribers as $subscriber) {
+			$email = $subscriber['email'];
+			$libs = str_replace(',', '<br>', $subscriber['libs']);
 
-		$template = file_get_contents('../template/welcome.htm');
-		$template = str_replace('{{libs}}', $libs, $template);
+			$template = file_get_contents('../template/welcome.htm');
+			$template = str_replace('{{libs}}', $libs, $template);
 
-		$mail = new Email($smtpHost, $smtpPort);
-		$mail->setProtocol(Email::SSL);
-		$mail->setLogin($smtpEmail, $smtpPassword);
-		$mail->addTo($tempTo);
-		$mail->setFrom($smtpEmail);
-		$mail->setSubject('Yoyo Subscription');
-		$mail->setMessage($template, true);
+			$mail = new Email($smtpHost, $smtpPort);
+			$mail->setProtocol(Email::SSL);
+			$mail->setLogin($smtpEmail, $smtpPassword);
+			$mail->addTo($tempTo);
+			$mail->setFrom($smtpEmail);
+			$mail->setSubject('Yoyo Subscription');
+			$mail->setMessage($template, true);
 
-		if ($mail->send()) {
-			$st = $conn->prepare('update subscriber set welcome_email_sent = 1 where email = ?;');
-			$st->execute([$email]);
+			if ($mail->send()) {
+				$st = $conn->prepare('update subscriber set welcome_email_sent = 1 where email = ?;');
+				$st->execute([$email]);
+			}
+
+	//		echo '<pre>';
+	//		print_r($mail->getLog());
+	//		echo '</pre>';
 		}
-
-//		echo '<pre>';
-//		print_r($mail->getLog());
-//		echo '</pre>';
 	}
+} catch (Exception $ex) {
+	// do nothing
 }
