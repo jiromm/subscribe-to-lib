@@ -1,1 +1,0 @@
-/* async-inlude - by Peter Coles http://mrcoles.com */(function(a){a(function(){a("[data-async-url]").each(function(){var b=a(this),c=b.data("async-url");a.ajax({url:c,dataType:"html",type:"get",success:function(a){b.replaceWith(a)}})})})})(jQuery);

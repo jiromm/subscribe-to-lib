@@ -1,8 +1,11 @@
 <?php
 
-require_once('../general/get-connection.php');
-require_once('../general/functions.php');
-require_once('../vendor/email.php');
+//require_once('../general/get-connection.php');
+//require_once('../general/functions.php');
+//require_once('../vendor/email.php');
+require_once('/var/www/notify.jiromm.com/general/get-connection.php');
+require_once('/var/www/notify.jiromm.com/general/functions.php');
+require_once('/var/www/notify.jiromm.com/vendor/email.php');
 
 try {
 	$st = $conn->prepare('
@@ -40,7 +43,8 @@ try {
 			$libs .= '</ul>';
 			$hash = getHash($email);
 
-			$template = file_get_contents('../template/update.htm');
+//			$template = file_get_contents('../template/update.htm');
+			$template = file_get_contents('/var/www/notify.jiromm.com/template/update.htm');
 			$template = str_replace('{{unsubscribe}}', "{$domain}/unsubscribe.php?email={$email}&hash={$hash}", $template);
 			$template = str_replace('{{website}}', $domain, $template);
 			$template = str_replace('{{libs}}', $libs, $template);

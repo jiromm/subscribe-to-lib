@@ -1,8 +1,11 @@
 <?php
 
-require_once('../general/get-connection.php');
-require_once('../general/functions.php');
-require_once('../vendor/email.php');
+//require_once('../general/get-connection.php');
+//require_once('../general/functions.php');
+//require_once('../vendor/email.php');
+require_once('/var/www/notify.jiromm.com/general/get-connection.php');
+require_once('/var/www/notify.jiromm.com/general/functions.php');
+require_once('/var/www/notify.jiromm.com/vendor/email.php');
 
 try {
 	$conn->exec('set session group_concat_max_len = 1000000;');
@@ -27,7 +30,8 @@ try {
 			$libs = str_replace(',', '<br>', $subscriber['libs']);
 			$hash = getHash($email);
 
-			$template = file_get_contents('../template/welcome.htm');
+//			$template = file_get_contents('../template/welcome.htm');
+			$template = file_get_contents('/var/www/notify.jiromm.com/template/welcome.htm');
 			$template = str_replace('{{unsubscribe}}', "{$domain}/unsubscribe.php?email={$email}&hash={$hash}", $template);
 			$template = str_replace('{{website}}', $domain, $template);
 			$template = str_replace('{{libs}}', $libs, $template);

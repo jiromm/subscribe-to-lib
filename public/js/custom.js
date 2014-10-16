@@ -59,26 +59,28 @@ $(function() {
 					status: parseInt(status) ? 0 : 1
 				};
 
-			$.ajax({
-				url: 'subscribe.php',
-				type: 'POST',
-				cache: false,
-				data: JSON.stringify(data),
-				dataType: 'json',
-				contentType: 'application/json; charset=UTF-8',
-				success: function(result) {
-					if (result.status == 'success') {
-						simpleStorage.set(subscriptionEmail, email);
-						$(document).trigger('subscribed');
+			if (email != undefined) {
+				$.ajax({
+					url: 'subscribe.php',
+					type: 'POST',
+					cache: false,
+					data: JSON.stringify(data),
+					dataType: 'json',
+					contentType: 'application/json; charset=UTF-8',
+					success: function(result) {
+						if (result.status == 'success') {
+							simpleStorage.set(subscriptionEmail, email);
+							$(document).trigger('subscribed');
 
-						subscribeSection.fadeOut('slow', function() {
-							alreadySubscribedSection.show();
-						});
-					} else {
-						alert('Server problems. Try later!')
+							subscribeSection.fadeOut('slow', function() {
+								alreadySubscribedSection.show();
+							});
+						} else {
+							alert('Server problems. Try later!')
+						}
 					}
-				}
-			});
+				});
+			}
 		}
 	});
 
