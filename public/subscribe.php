@@ -1,6 +1,7 @@
 <?php
 
 require_once('../general/get-connection.php');
+require_once('../general/functions.php');
 
 $phpInput = file_get_contents('php://input');
 $result = [
@@ -19,35 +20,35 @@ try {
 					$st->execute([$data['email']]);
 					$subscriberId = $st->fetchColumn();
 
-					if (preg_match('/^[\d.]$/', $data['version'])) {
+					if (preg_match('/^[\d.]+$/', $data['version'])) {
+						if (isset($data['channel'])) {
+							if (intval($data['status'])) {
+								$st = $conn->prepare('
+									insert into rel_subscriber_library(subscriber_id, library_id, subscriber_version, notification_date) values(
+										(select id from subscriber where email = ?),
+										(select id from library where alias = ?),
+										?, ?
+									);
+								');
+								$st->execute([$data['email'], $data['channel'], $data['version'], date('Y-m-d H:i:s')]);
+							} else {
+								$st = $conn->prepare('
+									delete from rel_subscriber_library where subscriber_id = (
+										select id from subscriber where email = ?
+									) and library_id = (
+										select id from library where alias = ?
+									);
+								');
+								$st->execute([$data['email'], $data['channel']]);
+							}
 
-					}
-
-					if (isset($data['channel'])) {
-						if (intval($data['status'])) {
-							$st = $conn->prepare('
-								insert into rel_subscriber_library(subscriber_id, library_id, subscriber_version, notification_date) values(
-									(select id from subscriber where email = ?),
-									(select id from library where alias = ?),
-									?, ?
-								);
-							');
-							$st->execute([$data['email'], $data['channel'], $data['version'], date('Y-m-d H:i:s')]);
+							$result = [
+								'status' => 'success',
+								'message' => 'You are successfully subscribed to the selected library.'
+							];
 						} else {
-							$st = $conn->prepare('
-								delete from rel_subscriber_library where subscriber_id = (
-									select id from subscriber where email = ?
-								) and library_id = (
-									select id from library where alias = ?
-								);
-							');
-							$st->execute([$data['email'], $data['channel']]);
+							$result['message'] = 'Bad data provided';
 						}
-
-						$result = [
-							'status' => 'success',
-							'message' => 'You are successfully subscribed to the selected library.'
-						];
 					} else {
 						$result['message'] = 'Bad data provided';
 					}
@@ -58,8 +59,8 @@ try {
 					$subscriptionList = [];
 
 					if ($subscriber === false) {
-						$st = $conn->prepare('insert into subscriber(email, registration_date) values(?, ?);');
-						$st->execute([$data['email'], date('Y-m-d H:i:s')]);
+						$st = $conn->prepare('insert into subscriber(email, registration_date, hash) values(?, ?, ?);');
+						$st->execute([$data['email'], date('Y-m-d H:i:s'), getHash($data['email'])]);
 
 						$subscriberId = $conn->lastInsertId();
 					} else {
@@ -102,14 +103,12 @@ try {
 								}
 							}
 						}
-
-						$result = [
-							'status' => 'success',
-							'message' => 'You are successfully subscribed to the selected libraries.'
-						];
-					} else {
-						$result['message'] = 'Bad data provided';
 					}
+
+					$result = [
+						'status' => 'success',
+						'message' => 'You are successfully subscribed to the selected libraries.'
+					];
 				}
 			} else {
 				$result['message'] = 'Email invalid';
