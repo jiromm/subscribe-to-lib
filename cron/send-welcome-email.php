@@ -1,6 +1,7 @@
 <?php
 
 require_once('../general/get-connection.php');
+require_once('../general/functions.php');
 require_once('../vendor/email.php');
 
 try {
@@ -16,12 +17,19 @@ try {
 	$st->execute();
 	$subscribers = $st->fetchAll(PDO::FETCH_ASSOC);
 
+//	echo '<pre>';
+//	print_r($subscribers);
+//	echo '</pre>';
+
 	if (count($subscribers)) {
 		foreach ($subscribers as $subscriber) {
 			$email = $subscriber['email'];
 			$libs = str_replace(',', '<br>', $subscriber['libs']);
+			$hash = getHash($email);
 
 			$template = file_get_contents('../template/welcome.htm');
+			$template = str_replace('{{unsubscribe}}', "{$domain}/unsubscribe.php?email={$email}&hash={$hash}", $template);
+			$template = str_replace('{{website}}', $domain, $template);
 			$template = str_replace('{{libs}}', $libs, $template);
 
 			$mail = new Email($smtpHost, $smtpPort);
@@ -37,9 +45,9 @@ try {
 				$st->execute([$email]);
 			}
 
-	//		echo '<pre>';
-	//		print_r($mail->getLog());
-	//		echo '</pre>';
+			echo '<pre>';
+			print_r($mail->getLog());
+			echo '</pre>';
 		}
 	}
 } catch (Exception $ex) {

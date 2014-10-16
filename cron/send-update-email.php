@@ -1,6 +1,7 @@
 <?php
 
 require_once('../general/get-connection.php');
+require_once('../general/functions.php');
 require_once('../vendor/email.php');
 
 try {
@@ -8,7 +9,8 @@ try {
 		select * from mailing_queue
 		left join library on mailing_queue.library_id = library.id
 		right join rel_subscriber_library on library.id = rel_subscriber_library.library_id
-		left join subscriber on subscriber.id = rel_subscriber_library.subscriber_id;
+		left join subscriber on subscriber.id = rel_subscriber_library.subscriber_id
+		where subscriber.subscribed = 1;
 	');
 	$st->execute();
 	$subscribers = $st->fetchAll(PDO::FETCH_ASSOC);
@@ -36,8 +38,11 @@ try {
 			}
 
 			$libs .= '</ul>';
+			$hash = getHash($email);
 
 			$template = file_get_contents('../template/update.htm');
+			$template = str_replace('{{unsubscribe}}', "{$domain}/unsubscribe.php?email={$email}&hash={$hash}", $template);
+			$template = str_replace('{{website}}', $domain, $template);
 			$template = str_replace('{{libs}}', $libs, $template);
 
 			$mail = new Email($smtpHost, $smtpPort);
