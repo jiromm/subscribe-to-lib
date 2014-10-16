@@ -99,7 +99,6 @@ $libraries = include('../general/get-libraries.php');
 
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-	<script src="js/async-include.js"></script>
 	<script src="js/simpleStorage.js"></script>
 	<script src="js/custom.js"></script>
 </body>
