@@ -1,6 +1,6 @@
 <?php
 
-$libraries = include('../general/get-libraries.php');
+$libraries = include(dirname(__DIR__) . '/general/get-libraries.php');
 
 ?><html>
 <head>

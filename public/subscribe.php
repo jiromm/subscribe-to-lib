@@ -1,7 +1,7 @@
 <?php
 
-require_once('../general/get-connection.php');
-require_once('../general/functions.php');
+require_once(dirname(__DIR__) . '/general/get-connection.php');
+require_once(dirname(__DIR__) . '/general/functions.php');
 
 $phpInput = file_get_contents('php://input');
 $result = [

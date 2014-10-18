@@ -1,7 +1,6 @@
 <?php
 
-//require_once('../general/get-connection.php');
-require_once('/var/www/notify.jiromm.com/general/get-connection.php');
+require_once(dirname(__DIR__) . '/general/get-connection.php');
 
 const LIB_ERROR_VERSION = 1;
 
@@ -14,16 +13,11 @@ try {
 
 	if ($libraries) {
 		foreach ($libraries as $library) {
-			/**
-			 * @define jquery1 $alias
-			 */
 			$alias = $library['alias'];
-//			$libName = "../libs/{$alias}.php";
-			$libName = "/var/www/notify.jiromm.com/libs/{$alias}.php";
+			$libName = dirname(__DIR__) . "/libs/{$alias}.php";
 
 			if (is_readable($libName)) {
-//				$libinfo = include("../libs/{$alias}.php");
-				$libinfo = include("/var/www/notify.jiromm.com/libs/{$alias}.php");
+				$libinfo = include(dirname(__DIR__) . "/libs/{$alias}.php");
 				$libVersion = $libinfo['version']();
 
 				if ($libVersion !== false) {

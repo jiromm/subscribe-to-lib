@@ -1,7 +1,7 @@
 <?php
 
-require_once('../general/get-connection.php');
-require_once('../general/functions.php');
+require_once(dirname(__DIR__) . '/general/get-connection.php');
+require_once(dirname(__DIR__) . '/general/functions.php');
 
 try {
 	if (isset($_GET['email']) && $_GET['hash']) {

@@ -1,7 +1,6 @@
 <?php
 
-chdir(dirname(__DIR__));
-require_once('get-connection.php');
+require_once(dirname(__DIR__) . '/general/get-connection.php');
 
 try {
 	$st = $conn->prepare('select * from library;');
