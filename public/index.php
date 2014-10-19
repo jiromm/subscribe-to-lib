@@ -2,11 +2,13 @@
 
 $libraries = include(dirname(__DIR__) . '/general/get-libraries.php');
 
-?><html>
+?><!doctype html>
+<html>
 <head>
 	<title>Subscribe to Lib</title>
 	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<meta name="author" content="Aram Baghdasaryan">
 
 	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<link href="css/style.css" rel="stylesheet" media="screen">
@@ -14,15 +16,16 @@ $libraries = include(dirname(__DIR__) . '/general/get-libraries.php');
 	<script src="js/modernizr.custom.js"></script>
 </head>
 <body>
-<script>
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-	ga('create', 'UA-55896642-1', 'auto');
-	ga('send', 'pageview');
-</script>
+		ga('create', 'UA-55896642-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+
 	<div id="intro">
 		<div class="intro-text">
 			<div class="container">
