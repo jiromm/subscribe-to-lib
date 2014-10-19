@@ -6,11 +6,10 @@ require_once(dirname(__DIR__) . '/vendor/email.php');
 
 try {
 	$st = $conn->prepare('
-		select * from mailing_queue
-		left join library on mailing_queue.library_id = library.id
-		right join rel_subscriber_library on library.id = rel_subscriber_library.library_id
-		left join subscriber on subscriber.id = rel_subscriber_library.subscriber_id
-		where rel_subscriber_library.subscriber_version <> library.version and subscriber.subscribed = 1;
+		select * from rel_subscriber_library
+			left join library on rel_subscriber_library.library_id = library.id
+			left join subscriber on subscriber.id = rel_subscriber_library.subscriber_id
+		where library.version <> rel_subscriber_library.subscriber_version and subscriber.subscribed = 1;
 	');
 	$st->execute();
 	$subscribers = $st->fetchAll(PDO::FETCH_ASSOC);
@@ -28,7 +27,7 @@ try {
 				'version' => $subscriber['version'],
 				'link' => $subscriber['link'],
 			];
-		}
+		} var_dump($listBySubscriber);
 
 		foreach ($listBySubscriber as $email => $subscriber) {
 			$libs = '<ul>';
