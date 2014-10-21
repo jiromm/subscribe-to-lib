@@ -11,8 +11,8 @@ $libraries = include(dirname(__DIR__) . '/general/get-libraries.php');
 	<meta name="author" content="Aram Baghdasaryan">
 
 	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 	<link href="css/style.css" rel="stylesheet" media="screen">
-	<link href="color/default.css" rel="stylesheet" media="screen">
 	<script src="js/modernizr.custom.js"></script>
 </head>
 <body>
@@ -26,61 +26,56 @@ $libraries = include(dirname(__DIR__) . '/general/get-libraries.php');
 		ga('send', 'pageview');
 	</script>
 
-	<div id="intro">
-		<div class="intro-text">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="brand">
-							<h1><a href="/">Subscribe to Lib</a></h1>
-							<div class="line-spacer"></div>
-							<p><span>Not using Bower, Grunt or Yeoman?</span></p>
-							<p><span>So this tool for you!</span></p>
-						</div>
+	<section class="headline">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="brand">
+						<h1>Subscribe to Lib</h1>
+						<p>Not using Bower, Grunt or Yeoman?</p>
+						<p>So this tool for you!</p>
 					</div>
 				</div>
 			</div>
 		</div>
+	</section>
+
+	<div class="subscribe-action">
+		<section id="already-subscribed">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-offset-3 col-md-6">
+						<h1>Already Subscribed</h1>
+						<h3><span class="text-muted">With</span> <span class="subscription-email"></span></h3>
+						<p>It means you'll be receiving emails every time when new update will be ready. But don't upset because lalala...</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="subscribe">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-offset-4 col-md-6">
+						<h1>Be Notified</h1>
+
+						<form class="form-inline">
+							<div class="form-group has-feedback">
+								<input name="email" type="email" class="form-control input-lg email-input" placeholder="Your Email Address">
+								<a class="btn btn-primary btn-lg big-subscribe-button" type="button">Subscribe</a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
 	</div>
 
-	<section id="already-subscribed">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-offset-3 col-md-6">
-					<h1>Already Subscribed</h1>
-					<h3>
-						<span class="text-muted">With</span> <span class="subscription-email"></span>
-					</h3>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section id="subscribe">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-offset-3 col-md-6">
-					<h1>Be Notified</h1>
-
-					<form class="form-horizontal">
-						<div class="form-group has-feedback">
-							<input name="email" type="email" class="form-control input-lg email-input" placeholder="Your Email Address">
-							<span class="glyphicon glyphicon-remove form-control-feedback hide"></span>
-						</div>
-					</form>
-
-					<a class="btn btn-primary btn-lg big-subscribe-button" type="button">Subscribe</a>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section class="home-section bg-white">
+	<section class="home-section">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-offset-2 col-md-8">
 					<div class="section-heading">
-						<h2>Libs</h2>
 						<?php if (count($libraries)) { ?>
 							<?php foreach ($libraries as $library) { ?>
 						<p>
@@ -94,6 +89,17 @@ $libraries = include(dirname(__DIR__) . '/general/get-libraries.php');
 							<?php } ?>
 						<?php } ?>
 					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="story">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-offset-2 col-md-8">
+					<h2>Story of my life</h2>
+					<p>Why this project alive? Shrien Dewani did not look like the victim of a robbery on the night his new wife was killed, according to one of the first policemen to see the Bristol businessman after armed men allegedly hijacked the taxi he was travelling in. His clothes were clean and he did…</p>
 				</div>
 			</div>
 		</div>
