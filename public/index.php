@@ -13,7 +13,12 @@ $libraries = include(dirname(__DIR__) . '/general/get-libraries.php');
 	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 	<link href="css/style.css" rel="stylesheet" media="screen">
+	<link href="css/ns-default.css" rel="stylesheet" media="screen">
+	<link href="css/ns-style-other.css" rel="stylesheet" media="screen">
 	<script src="js/modernizr.custom.js"></script>
+	<script src="js/snap.svg-min.js"></script>
+	<script src="js/classie.js"></script>
+	<script src="js/notificationFx.js"></script>
 </head>
 <body>
 	<script>
@@ -25,6 +30,12 @@ $libraries = include(dirname(__DIR__) . '/general/get-libraries.php');
 		ga('create', 'UA-55896642-1', 'auto');
 		ga('send', 'pageview');
 	</script>
+
+	<div class="notification-shape shape-box" id="notification-shape" data-path-to="m 0,0 500,0 0,500 -500,0 z">
+		<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 500 500" preserveAspectRatio="none">
+			<path d="m 0,0 500,0 0,500 0,-500 z">
+		</svg>
+	</div>
 
 	<section class="headline">
 		<div class="container">
