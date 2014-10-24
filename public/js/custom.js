@@ -13,7 +13,7 @@ $(function() {
 			).test(emailAddress);
 		};
 
-	subscribeButton.on('init', function(e, realClick) {
+	subscribeButton.on('init', function(e, realClick, silent) {
 		var status = $(this).attr('data-status'),
 			alias = $(this).attr('data-alias'),
 			version = $(this).attr('data-version');
@@ -70,7 +70,7 @@ $(function() {
 					success: function(result) {
 						if (result.status == 'success') {
 							simpleStorage.set(subscriptionEmail, email);
-							$(document).trigger('subscribed');
+							$(document).trigger('subscribed', [silent]);
 
 							subscribeSection.fadeOut('slow', function() {
 								alreadySubscribedSection.show();
@@ -87,7 +87,7 @@ $(function() {
 	subscribeButton.on('click', function(e) {
 		e.preventDefault();
 
-		$(this).trigger('init', [true]);
+		$(this).trigger('init', [true, false]);
 	});
 
 	approveButton.on('click', function(e) {
@@ -122,7 +122,7 @@ $(function() {
 						var parent = self.parent(),
 							oldVersion = simpleStorage.get(list[index]);
 
-						self.trigger('init', [false]);
+						self.trigger('init', [false, false]);
 
 						if (self.attr('data-version') != oldVersion) {
 							parent
@@ -196,15 +196,11 @@ $(function() {
 		}
 	});
 
-	$(document).on('subscribed', function() {
+	$(document).on('subscribed', function(e, silent) {
 		subscribeSection.hide();
 		alreadySubscribedSection.show();
 
-		var email = simpleStorage.get(subscriptionEmail);
-
-		$('.subscription-email').text(email);
-
-		var email = email,
+		var email = simpleStorage.get(subscriptionEmail),
 			channels = {},
 			list = simpleStorage.index(),
 			data = {
@@ -224,6 +220,8 @@ $(function() {
 			}
 		}
 
+		$('.subscription-email').text(email);
+
 		$.ajax({
 			url: 'sync.php',
 			type: 'POST',
@@ -233,43 +231,57 @@ $(function() {
 			contentType: 'application/json; charset=UTF-8',
 			success: function(result) {
 				if (result.status == 'success') {
-					//
+					if (result.channels.length) {
+						for (var index in result.channels) {
+							if (result.channels.hasOwnProperty(index)) {
+								var needle = $('a[data-alias=' + result.channels[index]['alias'] + ']');
+
+								if (parseInt(needle.attr('data-status')) == 1) {
+									continue;
+								}
+
+								needle.trigger('init', [true, true]);
+							}
+						}
+					}
 				} else {
 					//
 				}
 
-				// synchronize
-				var svgshape = document.getElementById('notification-shape'),
-					s = Snap(svgshape.querySelector('svg')),
-					path = s.select('path'),
-					pathConfig = {
-						from: path.attr('d'),
-						to: svgshape.getAttribute('data-path-to')
-					};
+				if (!silent) {
+					// synchronize
+					var svgshape = document.getElementById('notification-shape'),
+						s = Snap(svgshape.querySelector('svg')),
+						path = s.select('path'),
+						pathConfig = {
+							from: path.attr('d'),
+							to: svgshape.getAttribute('data-path-to')
+						};
 
-				// create the notification
-				var notification = new NotificationFx({
-					wrapper: svgshape,
-					message: '<p><span class="glyphicon glyphicon-bell notification-icon"></span> ' + result.message + '</p>',
-					layout: 'other',
-					effect: 'cornerexpand',
-					type: 'notice', // notice, warning or error
-					onClose : function() {
-						setTimeout(function() {
-							path.animate({
-								'path' : pathConfig.from
-							}, 300);
-						}, 200);
-					}
-				});
+					// create the notification
+					var notification = new NotificationFx({
+						wrapper: svgshape,
+						message: '<p><span class="glyphicon glyphicon-bell notification-icon"></span> ' + result.message + '</p>',
+						layout: 'other',
+						effect: 'cornerexpand',
+						type: 'notice', // notice, warning or error
+						onClose : function() {
+							setTimeout(function() {
+								path.animate({
+									'path' : pathConfig.from
+								}, 300);
+							}, 200);
+						}
+					});
 
-				// show the notification
-				notification.show();
+					// show the notification
+					notification.show();
 
-				// simulate loading (for demo purposes only)
-				path.animate({
-					'path': pathConfig.to
-				}, 300);
+					// simulate loading (for demo purposes only)
+					path.animate({
+						'path': pathConfig.to
+					}, 300);
+				}
 			}
 		});
 	});

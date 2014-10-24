@@ -17,13 +17,33 @@ try {
 			if (filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
 				if (isset($data['channels'])) {
 					$st = $conn->prepare('
-						select library.id, library.name, library.version from rel_subscriber_library
+						select library.alias, library.version from rel_subscriber_library
 						left join library on library.id = rel_subscriber_library.library_id
 						left join subscriber on subscriber.id = rel_subscriber_library.subscriber_id
 						where subscriber.email = ?;
 					');
 					$st->execute([$data['email']]);
 					$channels = $st->fetchAll(PDO::FETCH_ASSOC);
+					$channelsSimpleList = [];
+
+					// Get intersect to return
+					if (count($channels)) {
+						foreach ($channels as $channel) {
+							array_push($channelsSimpleList, $channel['alias']);
+						}
+
+						if (count($data['channels'])) {
+							foreach ($data['channels'] as $alias => $version) {
+								if (in_array($alias, $channelsSimpleList)) {
+									continue;
+								}
+
+								array_push($channels, ['alias' => $alias, 'version' => $version]);
+							}
+						}
+					} else {
+						$channels = $data['channels'];
+					}
 
 					$result = [
 						'status' => 'success',
