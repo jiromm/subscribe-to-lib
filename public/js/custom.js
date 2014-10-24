@@ -200,15 +200,78 @@ $(function() {
 		subscribeSection.hide();
 		alreadySubscribedSection.show();
 
-		$('.subscription-email').text(simpleStorage.get(subscriptionEmail));
+		var email = simpleStorage.get(subscriptionEmail);
+
+		$('.subscription-email').text(email);
+
+		var email = email,
+			channels = {},
+			list = simpleStorage.index(),
+			data = {
+				email: email,
+				channels: channels
+			};
 
 		if (list.length) {
 			for (var index in list) {
 				if (list.hasOwnProperty(index)) {
+					if (list[index] == subscriptionEmail) {
+						continue;
+					}
+
 					channels[list[index]] = simpleStorage.get(list[index]);
 				}
 			}
 		}
+
+		$.ajax({
+			url: 'sync.php',
+			type: 'POST',
+			cache: false,
+			data: JSON.stringify(data),
+			dataType: 'json',
+			contentType: 'application/json; charset=UTF-8',
+			success: function(result) {
+				if (result.status == 'success') {
+					//
+				} else {
+					//
+				}
+
+				// synchronize
+				var svgshape = document.getElementById('notification-shape'),
+					s = Snap(svgshape.querySelector('svg')),
+					path = s.select('path'),
+					pathConfig = {
+						from: path.attr('d'),
+						to: svgshape.getAttribute('data-path-to')
+					};
+
+				// create the notification
+				var notification = new NotificationFx({
+					wrapper: svgshape,
+					message: '<p><span class="glyphicon glyphicon-bell notification-icon"></span> ' + result.message + '</p>',
+					layout: 'other',
+					effect: 'cornerexpand',
+					type: 'notice', // notice, warning or error
+					onClose : function() {
+						setTimeout(function() {
+							path.animate({
+								'path' : pathConfig.from
+							}, 300);
+						}, 200);
+					}
+				});
+
+				// show the notification
+				notification.show();
+
+				// simulate loading (for demo purposes only)
+				path.animate({
+					'path': pathConfig.to
+				}, 300);
+			}
+		});
 	});
 
 	$(document).on('unsubscribed', function() {
@@ -221,61 +284,4 @@ $(function() {
 	} else {
 		$(document).trigger('subscribed');
 	}
-
-	var email = emailField.val(),
-		channels = {},
-		list = simpleStorage.index(),
-		data = {
-			email: email,
-			channels: channels
-		};
-
-	$.ajax({
-		url: 'sync.php',
-		type: 'POST',
-		cache: false,
-		data: JSON.stringify(data),
-		dataType: 'json',
-		contentType: 'application/json; charset=UTF-8',
-		success: function(result) {
-//			if (result.status == 'success') {
-				// synchronize
-				var svgshape = document.getElementById('notification-shape'),
-					s = Snap(svgshape.querySelector('svg')),
-					path = s.select('path'),
-					pathConfig = {
-						from: path.attr('d'),
-						to: svgshape.getAttribute('data-path-to')
-					};
-
-
-				// simulate loading (for demo purposes only)
-				path.animate({
-					'path': pathConfig.to
-				}, 300);
-
-				// create the notification
-				var notification = new NotificationFx({
-					wrapper: svgshape,
-					message: '<p><span class="glyphicon glyphicon-bell notification-icon"></span> I\'m appaering in a morphed shape thanks to <a href="http://snapsvg.io/">Snap.svg</a></p>',
-					layout: 'other',
-					effect: 'cornerexpand',
-					type: 'notice', // notice, warning or error
-//					ttl: 100000000,
-					onClose : function() {
-						setTimeout(function() {
-							path.animate({
-								'path' : pathConfig.from
-							}, 300);
-						}, 200);
-					}
-				});
-
-				// show the notification
-				notification.show();
-//			} else {
-//				alert('Server problems. Try later!')
-//			}
-		}
-	});
 });

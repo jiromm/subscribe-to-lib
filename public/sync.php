@@ -15,10 +15,20 @@ try {
 
 		if (isset($data['email'])) {
 			if (filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
-				if (isset($data['channel']) && isset($data['version']) && isset($data['status'])) {
+				if (isset($data['channels'])) {
+					$st = $conn->prepare('
+						select library.id, library.name, library.version from rel_subscriber_library
+						left join library on library.id = rel_subscriber_library.library_id
+						left join subscriber on subscriber.id = rel_subscriber_library.subscriber_id
+						where subscriber.email = ?;
+					');
+					$st->execute([$data['email']]);
+					$channels = $st->fetchAll(PDO::FETCH_ASSOC);
+
 					$result = [
 						'status' => 'success',
 						'message' => 'Everything is ok.',
+						'channels' => $channels,
 					];
 				}
 			} else {
@@ -32,7 +42,6 @@ try {
 	}
 } catch (Exception $ex) {
 	// do nothing
-	die($ex->getMessage());
 }
 
 header('Content-Type: application/json');
