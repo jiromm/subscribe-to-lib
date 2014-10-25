@@ -249,38 +249,20 @@ $(function() {
 				}
 
 				if (!silent) {
-					// synchronize
-					var svgshape = document.getElementById('notification-shape'),
-						s = Snap(svgshape.querySelector('svg')),
-						path = s.select('path'),
-						pathConfig = {
-							from: path.attr('d'),
-							to: svgshape.getAttribute('data-path-to')
-						};
-
-					// create the notification
-					var notification = new NotificationFx({
-						wrapper: svgshape,
-						message: '<p><span class="glyphicon glyphicon-bell notification-icon"></span> ' + result.message + '</p>',
-						layout: 'other',
-						effect: 'cornerexpand',
-						type: 'notice', // notice, warning or error
-						onClose : function() {
-							setTimeout(function() {
-								path.animate({
-									'path' : pathConfig.from
-								}, 300);
-							}, 200);
+					new PNotify({
+						text: result.message,
+						type: 'info',
+						shadow: false,
+						width: '140px',
+						opacity: .8,
+						icon: false,
+						addclass: 'sync-notification',
+						animate_speed: 'fast',
+						buttons: {
+							closer: false,
+							sticker: false
 						}
 					});
-
-					// show the notification
-					notification.show();
-
-					// simulate loading (for demo purposes only)
-					path.animate({
-						'path': pathConfig.to
-					}, 300);
 				}
 			}
 		});

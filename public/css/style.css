@@ -40,7 +40,7 @@ body {
 	margin: 5px;
 }
 .subscribe-action p {
-	margin-top: 30px;
+	margin-top: 25px;
 }
 .subscribe-action .form-control,
 .subscribe-action .btn {
@@ -86,4 +86,21 @@ footer p {
 	margin: 17px;
 	clear: both;
 	font-size: 40px;
+}
+.plane-container {
+	padding: 15px;
+	border-radius: 100%;
+	background: rgba(234, 218, 104, 0.5);
+	position: relative;
+	right: -90px;
+}
+.plane-container img {
+	width: 100%;
+}
+.relative {
+	position: relative;
+}
+.sync-notification {
+	text-align: center;
+	background-color: rgb(42, 130, 162);
 }

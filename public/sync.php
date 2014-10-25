@@ -66,7 +66,7 @@ try {
 
 						$result = [
 							'status' => 'success',
-							'message' => 'Everything is ok.',
+							'message' => 'Synchronized!',
 							'channels' => $channels,
 						];
 					}

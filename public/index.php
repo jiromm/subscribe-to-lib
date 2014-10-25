@@ -12,13 +12,9 @@ $libraries = include(dirname(__DIR__) . '/general/get-libraries.php');
 
 	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+	<link href="css/pnotify.custom.min.css" rel="stylesheet" media="screen">
 	<link href="css/style.css" rel="stylesheet" media="screen">
-	<link href="css/ns-default.css" rel="stylesheet" media="screen">
-	<link href="css/ns-style-other.css" rel="stylesheet" media="screen">
 	<script src="js/modernizr.custom.js"></script>
-	<script src="js/snap.svg-min.js"></script>
-	<script src="js/classie.js"></script>
-	<script src="js/notificationFx.js"></script>
 </head>
 <body>
 	<script>
@@ -30,12 +26,6 @@ $libraries = include(dirname(__DIR__) . '/general/get-libraries.php');
 		ga('create', 'UA-55896642-1', 'auto');
 		ga('send', 'pageview');
 	</script>
-
-	<div class="notification-shape shape-box" id="notification-shape" data-path-to="m 0,0 500,0 0,500 -500,0 z">
-		<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 500 500" preserveAspectRatio="none">
-			<path d="m 0,0 500,0 0,500 0,-500 z">
-		</svg>
-	</div>
 
 	<section class="headline">
 		<div class="container">
@@ -55,7 +45,12 @@ $libraries = include(dirname(__DIR__) . '/general/get-libraries.php');
 		<section id="already-subscribed">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-offset-3 col-md-6">
+					<div class="col-md-2 relative">
+						<div class="plane-container">
+							<img src="img/plane.png">
+						</div>
+					</div>
+					<div class="col-md-offset-1 col-md-6">
 						<h1>Already Subscribed</h1>
 						<h3><span class="text-muted">With</span> <span class="subscription-email"></span></h3>
 						<p>It means you'll be receiving emails every time when new update will be ready. But don't upset because lalala...</p>
@@ -67,7 +62,12 @@ $libraries = include(dirname(__DIR__) . '/general/get-libraries.php');
 		<section id="subscribe">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-offset-4 col-md-6">
+					<div class="col-md-2 relative">
+						<div class="plane-container">
+							<img src="img/plane.png">
+						</div>
+					</div>
+					<div class="col-md-offset-1 col-md-6">
 						<h1>Be Notified</h1>
 
 						<form class="form-inline">
@@ -76,6 +76,8 @@ $libraries = include(dirname(__DIR__) . '/general/get-libraries.php');
 								<a class="btn btn-primary btn-lg big-subscribe-button" type="button">Subscribe</a>
 							</div>
 						</form>
+
+						<p>To receive an emails when update will be ready.. Tra lya lya, lya lya lya. So don't hesitate to subscribe</p>
 					</div>
 				</div>
 			</div>
@@ -129,6 +131,7 @@ $libraries = include(dirname(__DIR__) . '/general/get-libraries.php');
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/simpleStorage.js"></script>
+	<script src="js/pnotify.custom.min.js"></script>
 	<script src="js/custom.js"></script>
 </body>
 </html>
