@@ -55,17 +55,15 @@ try {
 				} else {
 					$st = $conn->prepare('select * from subscriber where email = ?;');
 					$st->execute([$data['email']]);
-					$subscriber = $st->fetchColumn();
+					$subscriberId = $st->fetchColumn();
 					$subscriptionList = [];
 
-					if ($subscriber === false) {
+					if ($subscriberId === false) {
 						$st = $conn->prepare('insert into subscriber(email, registration_date, hash) values(?, ?, ?);');
 						$st->execute([$data['email'], date('Y-m-d H:i:s'), getHash($data['email'])]);
 
 						$subscriberId = $conn->lastInsertId();
 					} else {
-						$subscriberId = $subscriber;
-
 						if (isset($data['channels']) && count($data['channels'])) {
 							$stSubscriptions = $conn->prepare('select * from rel_subscriber_library where subscriber_id = ?;');
 							$stSubscriptions->execute([$subscriberId]);

@@ -15,41 +15,63 @@ try {
 
 		if (isset($data['email'])) {
 			if (filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
-				if (isset($data['channels'])) {
-					$st = $conn->prepare('
-						select library.alias, library.version from rel_subscriber_library
-						left join library on library.id = rel_subscriber_library.library_id
-						left join subscriber on subscriber.id = rel_subscriber_library.subscriber_id
-						where subscriber.email = ?;
-					');
-					$st->execute([$data['email']]);
-					$channels = $st->fetchAll(PDO::FETCH_ASSOC);
-					$channelsSimpleList = [];
+				$st = $conn->prepare('
+					select id from subscriber
+					where subscriber.email = ?;
+				');
+				$st->execute([$data['email']]);
+				$subscriberId = $st->fetchColumn();
 
-					// Get intersect to return
-					if (count($channels)) {
-						foreach ($channels as $channel) {
-							array_push($channelsSimpleList, $channel['alias']);
-						}
+				if ($subscriberId) {
+					if (isset($data['channels'])) {
+						$st = $conn->prepare('
+							select library.id, library.alias, library.version from rel_subscriber_library
+							left join library on library.id = rel_subscriber_library.library_id
+							where subscriber.id = ?;
+						');
+						$st->execute([$subscriberId]);
+						$channels = $st->fetchAll(PDO::FETCH_ASSOC);
+						$channelsSimpleList = [];
+						$channelsRelList = [];
 
-						if (count($data['channels'])) {
-							foreach ($data['channels'] as $alias => $version) {
-								if (in_array($alias, $channelsSimpleList)) {
-									continue;
-								}
-
-								array_push($channels, ['alias' => $alias, 'version' => $version]);
+						if (count($channels)) {
+							foreach ($channels as $channel) {
+								array_push($channelsSimpleList, $channel['alias']);
+								$channelsRelList[$channel['alias']] = [
+									'id' => $channel['id'],
+									'version' => $channel['version'],
+								];
 							}
-						}
-					} else {
-						$channels = $data['channels'];
-					}
 
-					$result = [
-						'status' => 'success',
-						'message' => 'Everything is ok.',
-						'channels' => $channels,
-					];
+							if (count($data['channels'])) {
+								$stInsert = $conn->prepare('
+									insert into rel_subscriber_library(subscriber_id, library_id, subscriber_version, notification_date) values(?, ?, ?, ?);
+								');
+
+								foreach ($data['channels'] as $alias => $version) {
+									if (in_array($alias, $channelsSimpleList)) {
+										continue;
+									}
+
+									// Prepare to return
+									array_push($channels, ['alias' => $alias, 'version' => $version]);
+
+									// Save to db
+									$stInsert->execute([$subscriberId, $channelsRelList[$alias]['id'], $channelsRelList[$alias]['version'], date('Y-m-d H:i:s')]);
+								}
+							}
+						} else {
+							$channels = $data['channels'];
+						}
+
+						$result = [
+							'status' => 'success',
+							'message' => 'Everything is ok.',
+							'channels' => $channels,
+						];
+					}
+				} else {
+					$result['message'] = 'Bad request';
 				}
 			} else {
 				$result['message'] = 'Email invalid';

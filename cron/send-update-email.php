@@ -6,9 +6,17 @@ require_once(dirname(__DIR__) . '/vendor/email.php');
 
 try {
 	$st = $conn->prepare('
-		select * from rel_subscriber_library
-			left join library on rel_subscriber_library.library_id = library.id
-			left join subscriber on subscriber.id = rel_subscriber_library.subscriber_id
+		select
+			subscriber.id as subscriber_id,
+			subscriber.email,
+			library.id as library_id,
+			library.name,
+			library.author,
+			library.version,
+			library.link
+		from rel_subscriber_library
+		left join library on rel_subscriber_library.library_id = library.id
+		left join subscriber on subscriber.id = rel_subscriber_library.subscriber_id
 		where library.version <> rel_subscriber_library.subscriber_version and subscriber.subscribed = 1;
 	');
 	$st->execute();
@@ -16,20 +24,28 @@ try {
 	$listBySubscriber = [];
 
 	if ($subscribers) {
+		$stUpdate = $conn->prepare('
+			update rel_subscriber_library set subscriber_version = ?
+			where subscriber_id = ? and library_id = ?;
+		');
+
 		foreach ($subscribers as $subscriber) {
 			if (!isset($listBySubscriber[$subscriber['email']])) {
 				$listBySubscriber[$subscriber['email']] = [];
 			}
 
 			$listBySubscriber[$subscriber['email']][] = [
+				'subscriber_id' => $subscriber['subscriber_id'],
+				'library_id' => $subscriber['library_id'],
 				'name' => $subscriber['name'],
 				'author' => $subscriber['author'],
 				'version' => $subscriber['version'],
 				'link' => $subscriber['link'],
 			];
-		} var_dump($listBySubscriber);
+		}
 
 		foreach ($listBySubscriber as $email => $subscriber) {
+			$freshVersions = [];
 			$libs = '<ul>';
 
 			foreach ($subscriber as $lib) {
@@ -53,7 +69,9 @@ try {
 			$mail->setMessage($template, true);
 
 			if ($mail->send()) {
-				// do nothing
+				foreach ($subscriber as $lib) {
+					$stUpdate->execute([$lib['version'], $lib['subscriber_id'], $lib['library_id']]);
+				}
 			}
 		}
 	}
