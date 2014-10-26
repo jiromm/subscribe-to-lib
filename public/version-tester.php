@@ -1,6 +1,6 @@
 <?php
 
-$alias = 'jquery2';
+$alias = 'pnotify';
 
 $libinfo = include(dirname(__DIR__) . "/libs/{$alias}.php");
 

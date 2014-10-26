@@ -1,2 +1,6 @@
 insert into library set
-	alias = 'jquery2', name = 'jQuery 2.x', author = 'jQuery Foundation, Inc.', link = 'http://jquery.com/', version = '2.1.1';
+	alias = 'pnotify',
+	name = 'PNotify',
+	author = 'Hunter Perrin',
+	link = 'http://sciactive.github.io/pnotify/',
+	version = '2.0.1';
