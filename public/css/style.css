@@ -103,4 +103,27 @@ footer p {
 .sync-notification {
 	text-align: center;
 	background-color: rgb(42, 130, 162);
+	border-radius: 0 !important;
+	overflow: hidden !important;
+}
+.title-libraries,
+.title-story {
+	position: relative;
+}
+h2.title:before {
+	content: '';
+	position: absolute;
+	left: -90px;
+	top: -25px;
+	display: block;
+	width: 80px;
+	height: 80px;
+	background-size: 50%;
+	border-radius: 50%;
+}
+.title-libraries:before {
+	background: rgba(58, 232, 95, 0.42) url('../img/subscribe.png') center center no-repeat;
+}
+.title-story:before {
+	background: rgba(232, 155, 11, 0.42) url('../img/story.png') center center no-repeat;
 }

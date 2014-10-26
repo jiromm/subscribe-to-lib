@@ -258,6 +258,7 @@ $(function() {
 						icon: false,
 						addclass: 'sync-notification',
 						animate_speed: 'fast',
+						cornerclass: 'ui-pnotify-sharp',
 						buttons: {
 							closer: false,
 							sticker: false

@@ -88,6 +88,8 @@ $libraries = include(dirname(__DIR__) . '/general/get-libraries.php');
 		<div class="container">
 			<div class="row">
 				<div class="col-md-offset-2 col-md-8">
+					<h2 class="title title-libraries">Libraries</h2>
+
 					<div class="section-heading">
 						<?php if (count($libraries)) { ?>
 							<?php foreach ($libraries as $library) { ?>
@@ -111,7 +113,7 @@ $libraries = include(dirname(__DIR__) . '/general/get-libraries.php');
 		<div class="container">
 			<div class="row">
 				<div class="col-md-offset-2 col-md-8">
-					<h2>Story of my life</h2>
+					<h2 class="title title-story">Story of my life</h2>
 					<p>Why this project alive? Shrien Dewani did not look like the victim of a robbery on the night his new wife was killed, according to one of the first policemen to see the Bristol businessman after armed men allegedly hijacked the taxi he was travelling in. His clothes were clean and he did…</p>
 				</div>
 			</div>
