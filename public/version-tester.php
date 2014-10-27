@@ -1,6 +1,6 @@
 <?php
 
-$alias = 'pnotify';
+$alias = 'jqueryvalidation';
 
 $libinfo = include(dirname(__DIR__) . "/libs/{$alias}.php");
 

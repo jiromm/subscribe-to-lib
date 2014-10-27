@@ -1,6 +1,6 @@
 insert into library set
-	alias = 'pnotify',
-	name = 'PNotify',
-	author = 'Hunter Perrin',
-	link = 'http://sciactive.github.io/pnotify/',
-	version = '2.0.1';
+	alias = 'jqueryvalidation',
+	name = 'jQuery Validation Plugin',
+	author = 'Jörn Zaefferer',
+	link = 'http://jqueryvalidation.org/',
+	version = '1.13.1';
