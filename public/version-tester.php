@@ -1,6 +1,6 @@
 <?php
 
-$alias = 'jqueryui';
+$alias = 'modernizr';
 
 $libinfo = include(dirname(__DIR__) . "/libs/{$alias}.php");
 

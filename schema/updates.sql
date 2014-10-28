@@ -1,6 +1,6 @@
 insert into library set
-	alias = 'jqueryui',
-	name = 'jQuery UI',
-	author = 'The jQuery Foundation',
-	link = 'http://jqueryui.com/',
-	version = '1.11.2';
+	alias = 'modernizr',
+	name = 'Modernizr',
+	author = 'Stu Cox, Paul Irish, ...',
+	link = 'http://modernizr.com/',
+	version = '2.8.3';
