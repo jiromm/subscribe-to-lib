@@ -1,6 +1,6 @@
 insert into library set
-	alias = 'modernizr',
-	name = 'Modernizr',
-	author = 'Stu Cox, Paul Irish, ...',
-	link = 'http://modernizr.com/',
-	version = '2.8.3';
+	alias = 'jquerymobile',
+	name = 'jQuery Mobile',
+	author = 'The jQuery Foundation',
+	link = 'http://jquerymobile.com/',
+	version = '1.4.4';

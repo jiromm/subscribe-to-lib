@@ -1,6 +1,6 @@
 <?php
 
-$alias = 'modernizr';
+$alias = 'jquerymobile';
 
 $libinfo = include(dirname(__DIR__) . "/libs/{$alias}.php");
 
