@@ -1,6 +1,6 @@
 insert into library set
-	alias = 'angularjs',
-	name = 'AngularJS',
-	author = 'Google, Inc.',
-	link = 'https://angularjs.org/',
-	version = '1.3.0';
+	alias = 'dojo',
+	name = 'Dojo Toolkit',
+	author = 'The Dojo Foundation',
+	link = 'http://dojotoolkit.org/',
+	version = '1.10.2';
