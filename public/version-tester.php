@@ -1,6 +1,6 @@
 <?php
 
-$alias = 'jquerymobile';
+$alias = 'angularjs';
 
 $libinfo = include(dirname(__DIR__) . "/libs/{$alias}.php");
 

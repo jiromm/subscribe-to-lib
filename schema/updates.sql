@@ -1,6 +1,6 @@
 insert into library set
-	alias = 'jquerymobile',
-	name = 'jQuery Mobile',
-	author = 'The jQuery Foundation',
-	link = 'http://jquerymobile.com/',
-	version = '1.4.4';
+	alias = 'angularjs',
+	name = 'AngularJS',
+	author = 'Google, Inc.',
+	link = 'https://angularjs.org/',
+	version = '1.3.0';
