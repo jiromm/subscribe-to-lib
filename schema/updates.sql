@@ -1,6 +1,6 @@
 insert into library set
-	alias = 'datatables',
-	name = 'DataTables',
-	author = 'SpryMedia Ltd',
-	link = 'http://www.datatables.net/',
-	version = '1.10.3';
+	alias = 'jqueryui',
+	name = 'jQuery UI',
+	author = 'The jQuery Foundation',
+	link = 'http://jqueryui.com/',
+	version = '1.11.2';

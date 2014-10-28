@@ -1,6 +1,6 @@
 <?php
 
-$alias = 'datatables';
+$alias = 'jqueryui';
 
 $libinfo = include(dirname(__DIR__) . "/libs/{$alias}.php");
 
