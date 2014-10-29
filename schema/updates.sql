@@ -1,6 +1,6 @@
 insert into library set
-	alias = 'jqueryform',
-	name = 'jQuery Form Plugin',
-	author = 'Mike Alsup',
-	link = 'http://malsup.com/jquery/form/',
-	version = '3.51.0';
+	alias = 'selectize',
+	name = 'Selectize.js',
+	author = 'Brian Reavis',
+	link = 'http://brianreavis.github.io/selectize.js/',
+	version = '0.11.2';
