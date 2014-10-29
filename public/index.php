@@ -94,7 +94,7 @@ $libraries = include(dirname(__DIR__) . '/general/get-libraries.php');
 						<?php if (count($libraries)) { ?>
 							<?php foreach ($libraries as $library) { ?>
 						<p class="channel">
-							<a href="<?php echo $library['link']; ?>" rel="nofollow" class="text-primary">
+							<a href="<?php echo $library['link']; ?>" rel="nofollow" class="text-primary" target="_blank">
 								<?php echo $library['name']; ?>
 							</a><span class="old-version"></span> v<?php echo $library['version']; ?>
 							<span class="text-muted"><?php echo $library['author']; ?></span>
