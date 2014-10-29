@@ -1,6 +1,6 @@
 <?php
 
-$alias = 'dropzone';
+$alias = 'jqueryform';
 
 $libinfo = include(dirname(__DIR__) . "/libs/{$alias}.php");
 

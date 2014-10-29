@@ -1,6 +1,6 @@
 insert into library set
-	alias = 'dropzone',
-	name = 'Dropzone.js',
-	author = 'Matias Meno',
-	link = 'http://www.dropzonejs.com/',
-	version = '3.10.2';
+	alias = 'jqueryform',
+	name = 'jQuery Form Plugin',
+	author = 'Mike Alsup',
+	link = 'http://malsup.com/jquery/form/',
+	version = '3.51.0';
