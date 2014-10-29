@@ -23,53 +23,38 @@ try {
 				$subscriberId = $st->fetchColumn();
 
 				if ($subscriberId) {
-					if (isset($data['channels'])) {
-						$st = $conn->prepare('
-							select library.id, library.alias, library.version from rel_subscriber_library
+					$st = $conn->prepare('
+						select library.id, library.alias, library.version from rel_subscriber_library
 							left join library on library.id = rel_subscriber_library.library_id
-							where subscriber.id = ?;
-						');
-						$st->execute([$subscriberId]);
-						$channels = $st->fetchAll(PDO::FETCH_ASSOC);
-						$channelsSimpleList = [];
-						$channelsRelList = [];
+						where rel_subscriber_library.subscriber_id = ?;
+					');
+					$st->execute([$subscriberId]);
+					$channels = $st->fetchAll(PDO::FETCH_ASSOC);
+					$channelsClientSimpleList = [];
 
-						if (count($channels)) {
-							foreach ($channels as $channel) {
-								array_push($channelsSimpleList, $channel['alias']);
-								$channelsRelList[$channel['alias']] = [
-									'id' => $channel['id'],
-									'version' => $channel['version'],
-								];
-							}
-
-							if (count($data['channels'])) {
-								$stInsert = $conn->prepare('
-									insert into rel_subscriber_library(subscriber_id, library_id, subscriber_version, notification_date) values(?, ?, ?, ?);
-								');
-
-								foreach ($data['channels'] as $alias => $version) {
-									if (in_array($alias, $channelsSimpleList)) {
-										continue;
-									}
-
-									// Prepare to return
-									array_push($channels, ['alias' => $alias, 'version' => $version]);
-
-									// Save to db
-									$stInsert->execute([$subscriberId, $channelsRelList[$alias]['id'], $channelsRelList[$alias]['version'], date('Y-m-d H:i:s')]);
-								}
-							}
-						} else {
-							$channels = $data['channels'];
+					if (count($channels)) {
+						// Get client side list
+						foreach ($data['channels'] as $alias => $version) {
+							array_push($channelsClientSimpleList, $alias);
 						}
 
-						$result = [
-							'status' => 'success',
-							'message' => 'Synchronized!',
-							'channels' => $channels,
-						];
+						// Prepare to return also server side list
+						foreach ($channels as $channel) {
+							if (in_array($channel['alias'], $channelsClientSimpleList)) {
+								continue;
+							}
+
+							array_push($channels, ['alias' => $channel['alias'], 'version' => $channel['version']]);
+						}
+					} else {
+						$channels = $data['channels'];
 					}
+
+					$result = [
+						'status' => 'success',
+						'message' => 'Synchronized!',
+						'channels' => $channels,
+					];
 				} else {
 					$result['message'] = 'Bad request';
 				}
