@@ -1,6 +1,6 @@
 <?php
 
-$alias = 'dojo';
+$alias = 'dropzone';
 
 $libinfo = include(dirname(__DIR__) . "/libs/{$alias}.php");
 

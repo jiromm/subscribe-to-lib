@@ -1,6 +1,6 @@
 insert into library set
-	alias = 'dojo',
-	name = 'Dojo Toolkit',
-	author = 'The Dojo Foundation',
-	link = 'http://dojotoolkit.org/',
-	version = '1.10.2';
+	alias = 'dropzone',
+	name = 'Dropzone.js',
+	author = 'Matias Meno',
+	link = 'http://www.dropzonejs.com/',
+	version = '3.10.2';
