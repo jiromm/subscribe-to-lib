@@ -248,7 +248,7 @@ $(function() {
 					//
 				}
 
-				if (!silent) {
+				if (!silent && result.isSynced) {
 					new PNotify({
 						text: result.message,
 						type: 'info',

@@ -31,6 +31,7 @@ try {
 					$st->execute([$subscriberId]);
 					$channels = $st->fetchAll(PDO::FETCH_ASSOC);
 					$channelsClientSimpleList = [];
+					$isSynced = false;
 
 					if (count($channels)) {
 						// Get client side list
@@ -45,6 +46,7 @@ try {
 							}
 
 							array_push($channels, ['alias' => $channel['alias'], 'version' => $channel['version']]);
+							$isSynced = true;
 						}
 					} else {
 						$channels = $data['channels'];
@@ -54,6 +56,7 @@ try {
 						'status' => 'success',
 						'message' => 'Synchronized!',
 						'channels' => $channels,
+						'isSynced' => $isSynced,
 					];
 				} else {
 					$result['message'] = 'Bad request';
