@@ -13,6 +13,8 @@ $(function() {
 			).test(emailAddress);
 		};
 
+	$('a[data-toggle=tooltip]').tooltip();
+
 	subscribeButton.on('init', function(e, realClick, silent) {
 		var status = $(this).attr('data-status'),
 			alias = $(this).attr('data-alias'),

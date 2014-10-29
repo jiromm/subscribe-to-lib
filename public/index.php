@@ -98,8 +98,8 @@ $libraries = include(dirname(__DIR__) . '/general/get-libraries.php');
 								<?php echo $library['name']; ?>
 							</a><span class="old-version"></span> v<?php echo $library['version']; ?>
 							<span class="text-muted"><?php echo $library['author']; ?></span>
-							<a class="btn btn-xs subscribe-button btn-default" data-status="0" data-alias="<?php echo $library['alias']; ?>" data-version="<?php echo $library['version']; ?>"><span>Subscribe</span> <i class="glyphicon glyphicon-ok hide"></i></a>
-							<a class="btn btn-xs btn-warning approve-button hide" data-alias="<?php echo $library['alias']; ?>" data-version="<?php echo $library['version']; ?>">Approve!</a>
+							<a class="btn btn-xs subscribe-button btn-default pull-right" data-status="0" data-alias="<?php echo $library['alias']; ?>" data-version="<?php echo $library['version']; ?>"><span>Subscribe</span> <i class="glyphicon glyphicon-ok hide"></i></a>
+							<a class="btn btn-xs btn-success approve-button hide" data-toggle="tooltip" title="Approve changes" data-alias="<?php echo $library['alias']; ?>" data-version="<?php echo $library['version']; ?>"><i class="glyphicon glyphicon-ok"></i></a>
 						</p>
 							<?php } ?>
 						<?php } ?>
