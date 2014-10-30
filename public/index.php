@@ -34,7 +34,7 @@ $libraries = include(dirname(__DIR__) . '/general/get-libraries.php');
 					<div class="brand">
 						<h1>Subscribe to Lib</h1>
 						<p>Not using Bower, Grunt or Yeoman?</p>
-						<p>So this tool for you!</p>
+						<p>So this tool is for you!</p>
 					</div>
 				</div>
 			</div>
