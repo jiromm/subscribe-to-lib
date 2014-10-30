@@ -1,6 +1,6 @@
 <?php
 
-$alias = 'selectize';
+$alias = 'ember';
 
 $libinfo = include(dirname(__DIR__) . "/libs/{$alias}.php");
 

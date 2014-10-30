@@ -1,6 +1,6 @@
 insert into library set
-	alias = 'selectize',
-	name = 'Selectize.js',
-	author = 'Brian Reavis',
-	link = 'http://brianreavis.github.io/selectize.js/',
-	version = '0.11.2';
+	alias = 'ember',
+	name = 'Ember',
+	author = 'Tilde, Inc.',
+	link = 'http://emberjs.com/',
+	version = '1.8.0';
