@@ -88,7 +88,7 @@ $libraries = include(dirname(__DIR__) . '/general/get-libraries.php');
 		<div class="container">
 			<div class="row">
 				<div class="col-md-offset-2 col-md-8">
-					<h2 class="title title-libraries">Libraries</h2>
+					<h2 class="title title-libraries">Libraries <small>(<?php echo count($libraries); ?>)</small></h2>
 
 					<div class="section-heading">
 						<?php if (count($libraries)) { ?>
