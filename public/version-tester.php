@@ -1,6 +1,6 @@
 <?php
 
-$alias = 'underscore';
+$alias = 'react';
 
 $libinfo = include(dirname(__DIR__) . "/libs/{$alias}.php");
 

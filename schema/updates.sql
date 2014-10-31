@@ -1,6 +1,6 @@
 insert into library set
-	alias = 'underscore',
-	name = 'Underscore',
-	author = 'Jeremy Ashkenas',
-	link = 'http://underscorejs.org/',
-	version = '1.7.0';
+	alias = 'react',
+	name = 'React',
+	author = 'Facebook, Inc.',
+	link = 'http://facebook.github.io/react/',
+	version = '0.12.0';
