@@ -1,6 +1,6 @@
 <?php
 
-$alias = 'react';
+$alias = 'threejs';
 
 $libinfo = include(dirname(__DIR__) . "/libs/{$alias}.php");
 
