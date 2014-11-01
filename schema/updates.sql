@@ -1,6 +1,6 @@
 insert into library set
-	alias = 'threejs',
-	name = 'Three.js',
-	author = 'Mr.doob',
-	link = 'http://threejs.org/',
-	version = 'r69';
+	alias = 'mootools',
+	name = 'MooTools',
+	author = 'Valerio Proietti',
+	link = 'http://mootools.net/',
+	version = '1.5.1';

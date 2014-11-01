@@ -1,6 +1,6 @@
 <?php
 
-$alias = 'threejs';
+$alias = 'mootools';
 
 $libinfo = include(dirname(__DIR__) . "/libs/{$alias}.php");
 
