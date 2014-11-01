@@ -20,7 +20,7 @@ try {
 					$st->execute([$data['email']]);
 					$subscriberId = $st->fetchColumn();
 
-					if (preg_match('/^[\d.]+$/', $data['version'])) {
+					if (preg_match('/^[\d.]+$/', $data['version']) || preg_match('/^r[\d]+$/', $data['version'])) {
 						if (isset($data['channel'])) {
 							if (intval($data['status'])) {
 								$st = $conn->prepare('

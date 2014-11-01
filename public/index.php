@@ -41,8 +41,8 @@ $libraries = include(dirname(__DIR__) . '/general/get-libraries.php');
 		</div>
 	</section>
 
-	<div class="subscribe-action">
-		<section id="already-subscribed">
+	<div class="subscribe-action" data-spy="affix">
+		<section>
 			<div class="container">
 				<div class="row">
 					<div class="col-md-2 relative">
@@ -50,24 +50,12 @@ $libraries = include(dirname(__DIR__) . '/general/get-libraries.php');
 							<img src="img/plane.png">
 						</div>
 					</div>
-					<div class="col-md-offset-1 col-md-6">
+					<div id="already-subscribed" class="col-md-offset-1 col-md-6 cols">
 						<h1>Already Subscribed</h1>
 						<h3><span class="text-muted">With</span> <span class="subscription-email"></span></h3>
 						<p>It means you'll be receiving emails every time when new update will be ready. But don't upset because lalala...</p>
 					</div>
-				</div>
-			</div>
-		</section>
-
-		<section id="subscribe">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-2 relative">
-						<div class="plane-container">
-							<img src="img/plane.png">
-						</div>
-					</div>
-					<div class="col-md-offset-1 col-md-6">
+					<div id="subscribe" class="col-md-offset-1 col-md-6 cols">
 						<h1>Be Notified</h1>
 
 						<form class="form-inline">
@@ -107,6 +95,24 @@ $libraries = include(dirname(__DIR__) . '/general/get-libraries.php');
 				</div>
 			</div>
 		</div>
+
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
 	</section>
 
 	<section class="story">

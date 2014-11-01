@@ -281,4 +281,23 @@ $(function() {
 	} else {
 		$(document).trigger('subscribed');
 	}
+
+	$('.subscribe-action').affix({
+		offset: {
+			top: 402,
+			bottom: 0
+		}
+	});
+
+	$('.subscribe-action').on('affixed-top.bs.affix', function() {
+		$('.home-section').css('margin-top', 0);
+//		$('.home-section').animate({
+//			'margin-top': 0
+//		}, 1300);
+	}).on('affixed.bs.affix', function() {
+		$('.home-section').css('margin-top', 266);
+//		$('.home-section').animate({
+//			'margin-top': 266
+//		});
+	});
 });
