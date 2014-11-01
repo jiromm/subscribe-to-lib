@@ -69,7 +69,8 @@ body {
 	padding: 10px 0;
 	z-index: 1000;
 }
-.subscribe-action.affix p {
+.subscribe-action.affix p,
+.subscribe-action.affix #subscribe h1 {
 	display: none;
 }
 .subscribe-action .plane-container {
