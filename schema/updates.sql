@@ -1,6 +1,6 @@
 insert into library set
-	alias = 'mootools',
-	name = 'MooTools',
-	author = 'Valerio Proietti',
-	link = 'http://mootools.net/',
-	version = '1.5.1';
+	alias = 'prototype',
+	name = 'Prototype',
+	author = 'Prototype Core Team',
+	link = 'http://prototypejs.org/',
+	version = '1.7.2';
