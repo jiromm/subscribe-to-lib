@@ -30,7 +30,7 @@ $libraries = include(dirname(__DIR__) . '/general/get-libraries.php');
 	<section class="headline">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-sm-12">
 					<div class="brand">
 						<h1>Subscribe to Lib</h1>
 						<p>Not using Bower, Grunt or Yeoman?</p>
@@ -45,17 +45,17 @@ $libraries = include(dirname(__DIR__) . '/general/get-libraries.php');
 		<section>
 			<div class="container">
 				<div class="row">
-					<div class="col-md-2 relative">
+					<div class="col-sm-2 relative">
 						<div class="plane-container">
 							<img src="img/plane.png">
 						</div>
 					</div>
-					<div id="already-subscribed" class="col-md-offset-1 col-md-6 cols">
+					<div id="already-subscribed" class="col-sm-offset-1 col-sm-6 cols">
 						<h1>Already Subscribed</h1>
 						<h3><span class="text-muted">With</span> <span class="subscription-email"></span></h3>
 						<p>It means you'll be receiving emails every time when new update will be ready. But don't upset because lalala...</p>
 					</div>
-					<div id="subscribe" class="col-md-offset-1 col-md-6 cols">
+					<div id="subscribe" class="col-sm-offset-1 col-sm-6 cols">
 						<h1>Be Notified</h1>
 
 						<form class="form-inline">
@@ -75,7 +75,7 @@ $libraries = include(dirname(__DIR__) . '/general/get-libraries.php');
 	<section class="home-section">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-offset-2 col-md-8">
+				<div class="col-sm-offset-2 col-sm-8">
 					<h2 class="title title-libraries">Libraries <small>(<?php echo count($libraries); ?>)</small></h2>
 
 					<div class="section-heading">
@@ -95,30 +95,12 @@ $libraries = include(dirname(__DIR__) . '/general/get-libraries.php');
 				</div>
 			</div>
 		</div>
-
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
 	</section>
 
 	<section class="story">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-offset-2 col-md-8">
+				<div class="col-sm-offset-2 col-sm-8">
 					<h2 class="title title-story">Story of my life</h2>
 					<p>Why this project alive? Shrien Dewani did not look like the victim of a robbery on the night his new wife was killed, according to one of the first policemen to see the Bristol businessman after armed men allegedly hijacked the taxi he was travelling in. His clothes were clean and he did…</p>
 				</div>
@@ -129,7 +111,7 @@ $libraries = include(dirname(__DIR__) . '/general/get-libraries.php');
 	<footer>
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-sm-12">
 					<p>Copyright &copy; 2014 Aram Baghdasaryan. All rights reserved.</p>
 				</div>
 			</div>

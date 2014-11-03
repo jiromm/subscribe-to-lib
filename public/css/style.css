@@ -191,3 +191,24 @@ h2.title:before {
 	height: 22px;
 	padding-left: 3px;
 }
+
+@media (max-width: 480px) {
+
+}
+
+@media (max-width: 768px) {
+	.subscribe-action.affix .relative,
+	.subscribe-action.affix .cols {
+		display: inline-block;
+	}
+	.subscribe-action.affix .plane-container {
+		position: static;
+	}
+}
+
+@media (min-width: 979px) {
+	.subscribe-action.affix .plane-container {
+		right: -100px;
+	}
+}
+

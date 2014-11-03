@@ -1,6 +1,6 @@
 <?php
 
-$alias = 'masonry';
+$alias = 'ionic';
 
 $libinfo = include(dirname(__DIR__) . "/libs/{$alias}.php");
 

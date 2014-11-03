@@ -290,10 +290,10 @@ $(function() {
 	});
 
 	$('.subscribe-action').on('affixed-top.bs.affix', function() {
-		$('.home-section').css('margin-top', 0);
-//		$('.home-section').animate({
-//			'margin-top': 0
-//		}, 1300);
+		$('.home-section').css('margin-top', 266 - 68);
+		$('.home-section').animate({
+			'margin-top': 0
+		}, 1000);
 	}).on('affixed.bs.affix', function() {
 		$('.home-section').css('margin-top', 266);
 //		$('.home-section').animate({
