@@ -1,6 +1,6 @@
 <?php
 
-$alias = 'select2';
+$alias = 'backbone';
 
 $libinfo = include(dirname(__DIR__) . "/libs/{$alias}.php");
 

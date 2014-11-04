@@ -1,6 +1,6 @@
 insert into library set
-	alias = 'select2',
-	name = 'Select2',
-	author = 'Igor Vaynberg',
-	link = 'http://ivaynberg.github.io/select2/',
-	version = '3.5.2';
+	alias = 'backbone',
+	name = 'Backbone.js',
+	author = 'Jeremy Ashkenas',
+	link = 'http://backbonejs.org/',
+	version = '1.1.2';
