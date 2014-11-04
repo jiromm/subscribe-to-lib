@@ -1,6 +1,6 @@
 <?php
 
-$alias = 'backbone';
+$alias = 'coffeescript';
 
 $libinfo = include(dirname(__DIR__) . "/libs/{$alias}.php");
 
