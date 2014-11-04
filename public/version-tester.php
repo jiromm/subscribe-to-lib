@@ -1,6 +1,6 @@
 <?php
 
-$alias = 'ionic';
+$alias = 'select2';
 
 $libinfo = include(dirname(__DIR__) . "/libs/{$alias}.php");
 

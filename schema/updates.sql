@@ -1,6 +1,6 @@
 insert into library set
-	alias = 'ionic',
-	name = 'Ionic',
-	author = 'Drifty Co',
-	link = 'http://ionicframework.com/',
-	version = '1.0.0';
+	alias = 'select2',
+	name = 'Select2',
+	author = 'Igor Vaynberg',
+	link = 'http://ivaynberg.github.io/select2/',
+	version = '3.5.2';
