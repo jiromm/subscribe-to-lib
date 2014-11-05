@@ -1,6 +1,6 @@
 insert into library set
-	alias = 'coffeescript',
-	name = 'CoffeeScript',
-	author = 'Jeremy Ashkenas',
-	link = 'http://coffeescript.org/',
-	version = '1.8.0';
+	alias = 'videojs',
+	name = 'Video.js',
+	author = 'Brightcove, Inc.',
+	link = 'http://www.videojs.com/',
+	version = '4.10.2';

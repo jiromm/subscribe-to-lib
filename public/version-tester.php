@@ -1,6 +1,6 @@
 <?php
 
-$alias = 'coffeescript';
+$alias = 'videojs';
 
 $libinfo = include(dirname(__DIR__) . "/libs/{$alias}.php");
 
