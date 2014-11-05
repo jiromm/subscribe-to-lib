@@ -1,6 +1,6 @@
 <?php
 
-$alias = 'videojs';
+$alias = 'ace';
 
 $libinfo = include(dirname(__DIR__) . "/libs/{$alias}.php");
 
