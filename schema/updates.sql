@@ -1,6 +1,6 @@
 insert into library set
-	alias = 'ace',
-	name = 'Ace',
-	author = 'Cloud9 IDE, Inc.',
-	link = 'http://ace.c9.io/',
-	version = '1.1.7';
+	alias = 'pdfjs',
+	name = 'PDF.js',
+	author = 'Mozilla',
+	link = 'http://mozilla.github.io/pdf.js/',
+	version = '1.0.712';
