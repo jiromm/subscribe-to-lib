@@ -1,6 +1,6 @@
 <?php
 
-$alias = 'pdfjs';
+$alias = 'less';
 
 $libinfo = include(dirname(__DIR__) . "/libs/{$alias}.php");
 

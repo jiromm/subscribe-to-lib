@@ -1,6 +1,6 @@
 insert into library set
-	alias = 'pdfjs',
-	name = 'PDF.js',
-	author = 'Mozilla',
-	link = 'http://mozilla.github.io/pdf.js/',
-	version = '1.0.712';
+	alias = 'less',
+	name = 'Less',
+	author = 'Alexis Sellier',
+	link = 'http://lesscss.org/',
+	version = '2.0.0';
