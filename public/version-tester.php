@@ -1,6 +1,6 @@
 <?php
 
-$alias = 'less';
+$alias = 'd3';
 
 $libinfo = include(dirname(__DIR__) . "/libs/{$alias}.php");
 
