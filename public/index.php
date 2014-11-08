@@ -45,17 +45,17 @@ $libraries = include(dirname(__DIR__) . '/general/get-libraries.php');
 		<section>
 			<div class="container">
 				<div class="row">
-					<div class="col-sm-2 relative">
+					<div class="col-xs-2 relative">
 						<div class="plane-container">
 							<img src="img/plane.png">
 						</div>
 					</div>
-					<div id="already-subscribed" class="col-sm-offset-1 col-sm-6 cols">
+					<div id="already-subscribed" class="col-xs-offset-1 col-xs-6 cols">
 						<h1>Already Subscribed</h1>
 						<h3><span class="text-muted">With</span> <span class="subscription-email"></span></h3>
 						<p>It means you'll be receiving emails every time when new update will be ready. But don't upset because lalala...</p>
 					</div>
-					<div id="subscribe" class="col-sm-offset-1 col-sm-6 cols">
+					<div id="subscribe" class="col-xs-offset-1 col-xs-6 cols">
 						<h1>Be Notified</h1>
 
 						<form class="form-inline">
@@ -77,6 +77,14 @@ $libraries = include(dirname(__DIR__) . '/general/get-libraries.php');
 			<div class="row">
 				<div class="col-sm-offset-2 col-sm-8">
 					<h2 class="title title-libraries">Libraries <small>(<?php echo count($libraries); ?>)</small></h2>
+
+					<div class="row">
+						<div class="col-md-8 col-lg-7">
+							<input class="form-control input-lg live-search" placeholder="E.g. PhantomJS">
+						</div>
+					</div>
+
+					<br>
 
 					<div class="section-heading">
 						<?php if (count($libraries)) { ?>
@@ -122,6 +130,22 @@ $libraries = include(dirname(__DIR__) . '/general/get-libraries.php');
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/simpleStorage.js"></script>
 	<script src="js/pnotify.custom.min.js"></script>
+	<script src="js/taffy.min.js"></script>
 	<script src="js/custom.js"></script>
+
+	<script>
+		$(function() {
+			var data = jQuery.parseJSON('<?php echo json_encode($libraries); ?>'),
+				db = TAFFY(data);
+
+			$('.live-search').on('keyup', function() {
+				var result = db({name: {like: $(this).val()}});
+
+				result.limit(2).each(function (r) {
+					alert(r.name);
+				});
+			});
+		});
+	</script>
 </body>
 </html>
