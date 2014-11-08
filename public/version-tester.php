@@ -1,6 +1,6 @@
 <?php
 
-$alias = 'd3';
+$alias = 'phantomjs';
 
 $libinfo = include(dirname(__DIR__) . "/libs/{$alias}.php");
 

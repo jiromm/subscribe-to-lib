@@ -1,6 +1,6 @@
 insert into library set
-	alias = 'd3',
-	name = 'D3',
-	author = 'Mike Bostock',
-	link = 'http://d3js.org/',
-	version = '3.4.13';
+	alias = 'phantomjs',
+	name = 'PhantomJS',
+	author = 'Jamie Mason',
+	link = 'http://phantomjs.org/',
+	version = '1.9.8';
