@@ -1,6 +1,6 @@
 <?php
 
-$alias = 'leaflet';
+$alias = 'codemirror';
 
 $libinfo = include(dirname(__DIR__) . "/libs/{$alias}.php");
 

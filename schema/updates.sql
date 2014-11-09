@@ -1,6 +1,6 @@
 insert into library set
-	alias = 'leaflet',
-	name = 'Leaflet',
-	author = 'Vladimir Agafonkin',
-	link = 'http://leafletjs.com/',
-	version = '0.7.3';
+	alias = 'codemirror',
+	name = 'CodeMirror',
+	author = 'Marijn Haverbeke',
+	link = 'http://codemirror.net/',
+	version = '4.7';
