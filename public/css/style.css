@@ -6,7 +6,7 @@ body {
 	font: 16px 'Droid Serif', serif;
 }
 .headline {
-	background: #449ad4 url(../img/bg.jpg) no-repeat;
+	background: #449ad4 url(../img/bg_ed.jpg) no-repeat;
 	text-shadow: 1px 1px 0 rgba(2, 11, 13, 0.63);
 	background-size: cover;
 	padding: 100px 0;
