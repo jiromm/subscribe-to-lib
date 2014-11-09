@@ -1,6 +1,6 @@
 <?php
 
-$alias = 'phantomjs';
+$alias = 'leaflet';
 
 $libinfo = include(dirname(__DIR__) . "/libs/{$alias}.php");
 
