@@ -1,6 +1,6 @@
 <?php
 
-require_once(dirname(__DIR__) . '/general/config.php');
+require_once(dirname(__DIR__) . '/config/config.php');
 
 try {
 	$conn = new PDO("mysql:dbname={$mysqlDb}", $mysqlUser, $mysqlPassword);
