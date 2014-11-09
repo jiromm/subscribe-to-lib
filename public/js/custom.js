@@ -294,4 +294,23 @@ $(function() {
 	}).on('affixed.bs.affix', function() {
 		$('.home-section').css('margin-top', 140);
 	});
+
+	// Live search
+	var db = TAFFY(data);
+
+	$('.channel').hide();
+
+	db().limit(10).each(function (r) {
+		$('.channel[data-id=' + r.id + ']').show();
+	});
+
+	$('.live-search').on('keyup', function() {
+		var val = $(this).val();
+
+		$('.channel').hide();
+
+		db([{lower: {like: val}}, {name: {like: val}}, {alias: {like: val}}]).limit(10).each(function (r) {
+			$('.channel[data-id=' + r.id + ']').show();
+		});
+	});
 });

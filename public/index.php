@@ -88,8 +88,9 @@ $libraries = include(dirname(__DIR__) . '/general/get-libraries.php');
 
 					<div class="section-heading">
 						<?php if (count($libraries)) { ?>
-							<?php foreach ($libraries as $library) { ?>
-						<p class="channel">
+							<?php foreach ($libraries as $k => $library) { ?>
+								<?php $libraries[$k]['lower'] = strtolower($library['name']); ?>
+						<p class="channel" data-id="<?php echo $library['id']; ?>">
 							<a href="<?php echo $library['link']; ?>" rel="nofollow" class="text-primary" target="_blank">
 								<?php echo $library['name']; ?>
 							</a><span class="old-version"></span> v<?php echo $library['version']; ?>
@@ -133,19 +134,6 @@ $libraries = include(dirname(__DIR__) . '/general/get-libraries.php');
 	<script src="js/taffy.min.js"></script>
 	<script src="js/custom.js"></script>
 
-	<script>
-		$(function() {
-			var data = jQuery.parseJSON('<?php echo json_encode($libraries); ?>'),
-				db = TAFFY(data);
-
-			$('.live-search').on('keyup', function() {
-				var result = db({name: {like: $(this).val()}});
-
-				result.limit(2).each(function (r) {
-					alert(r.name);
-				});
-			});
-		});
-	</script>
+	<script> var data = JSON.parse('<?php echo json_encode($libraries); ?>'); </script>
 </body>
 </html>
