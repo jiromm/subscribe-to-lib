@@ -1,6 +1,6 @@
 insert into library set
-	alias = 'codemirror',
-	name = 'CodeMirror',
-	author = 'Marijn Haverbeke',
-	link = 'http://codemirror.net/',
-	version = '4.7';
+	alias = 'semanticui',
+	name = 'Semantic UI',
+	author = 'Jack Lukic',
+	link = 'http://semantic-ui.com/',
+	version = '0.19.3';

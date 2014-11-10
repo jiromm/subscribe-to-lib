@@ -1,6 +1,6 @@
 <?php
 
-$alias = 'codemirror';
+$alias = 'semanticui';
 
 $libinfo = include(dirname(__DIR__) . "/libs/{$alias}.php");
 
