@@ -9,10 +9,11 @@ try {
 
 	$st = $conn->prepare('
 		select subscriber.email as email, group_concat(library.name) as libs from subscriber
-			right join rel_subscriber_library on subscriber.id = rel_subscriber_library.subscriber_id
+			left join rel_subscriber_library on subscriber.id = rel_subscriber_library.subscriber_id
 			left join library on rel_subscriber_library.library_id = library.id
 		where subscriber.welcome_email_sent = 0
-		group by subscriber.email;
+		group by subscriber.email
+		limit 6;
 	');
 	$st->execute();
 	$subscribers = $st->fetchAll(PDO::FETCH_ASSOC);
@@ -45,9 +46,9 @@ try {
 				$st->execute([$email]);
 			}
 
-			echo '<pre>';
-			print_r($mail->getLog());
-			echo '</pre>';
+//			echo '<pre>';
+//			print_r($mail->getLog());
+//			echo '</pre>';
 		}
 	}
 } catch (Exception $ex) {
