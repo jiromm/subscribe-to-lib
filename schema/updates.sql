@@ -1,1 +1,6 @@
-ALTER TABLE `rel_subscriber_library` ADD UNIQUE `unique_index`(`subscriber_id`, `library_id`)
+insert into library set
+	alias = 'marionette',
+	name = 'Marionette',
+	author = 'Derick Bailey, Muted Solutions, LLC',
+	link = 'http://marionettejs.com/',
+	version = '2.2.0';

@@ -1,6 +1,6 @@
 <?php
 
-$alias = 'semanticui';
+$alias = 'marionette';
 
 $libinfo = include(dirname(__DIR__) . "/libs/{$alias}.php");
 
