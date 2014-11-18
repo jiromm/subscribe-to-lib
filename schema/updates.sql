@@ -1,6 +1,6 @@
 insert into library set
-	alias = 'slick',
-	name = 'Slick',
-	author = 'Ken Wheeler',
-	link = 'http://kenwheeler.github.io/slick/',
-	version = '1.3.15';
+	alias = 'jasmine',
+	name = 'Jasmine',
+	author = 'Pivotal Labs',
+	link = 'http://jasmine.github.io/',
+	version = '2.1.2';
