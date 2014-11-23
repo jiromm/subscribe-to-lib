@@ -1,6 +1,6 @@
 <?php
 
-$alias = 'jasmine';
+$alias = 'jqueryfileupload';
 
 $libinfo = include(dirname(__DIR__) . "/libs/{$alias}.php");
 

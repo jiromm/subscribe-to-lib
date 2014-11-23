@@ -1,6 +1,6 @@
 insert into library set
-	alias = 'jasmine',
-	name = 'Jasmine',
-	author = 'Pivotal Labs',
-	link = 'http://jasmine.github.io/',
-	version = '2.1.2';
+	alias = 'jqueryfileupload',
+	name = 'jQuery File Upload',
+	author = 'Sebastian Tschan',
+	link = 'https://blueimp.github.io/jQuery-File-Upload/',
+	version = '9.8.0';
