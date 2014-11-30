@@ -41,27 +41,20 @@ $libraries = include(dirname(__DIR__) . '/general/get-libraries.php');
 		</div>
 	</section>
 
-	<div class="subscribe-action" data-spy="affix">
+	<div class="subscribe-action">
 		<section>
-			<div class="container">
+			<div class="container text-center">
 				<div class="row">
-					<div class="col-xs-2 relative">
-						<div class="plane-container">
-							<img src="img/plane.png">
-						</div>
-					</div>
-					<div id="already-subscribed" class="col-xs-offset-1 col-xs-6 cols">
+					<div id="already-subscribed" class="col-sm-offset-2 col-sm-8 cols">
 						<h1>Already Subscribed</h1>
 						<h3><span class="text-muted">With</span> <span class="subscription-email"></span></h3>
 						<p>It means you'll be receiving emails every time when new update will be ready. But don't upset because lalala...</p>
 					</div>
-					<div id="subscribe" class="col-xs-offset-1 col-xs-6 cols">
-						<h1>Be Notified</h1>
-
+					<div id="subscribe" class="col-sm-offset-2 col-sm-8 cols">
 						<form class="form-inline">
 							<div class="form-group has-feedback">
 								<input name="email" type="email" class="form-control input-lg email-input" placeholder="Your Email Address">
-								<a class="btn btn-primary btn-lg big-subscribe-button" type="button">Subscribe</a>
+								<a class="btn btn-default btn-lg big-subscribe-button" type="button">Subscribe</a>
 							</div>
 						</form>
 
@@ -121,7 +114,7 @@ $libraries = include(dirname(__DIR__) . '/general/get-libraries.php');
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12">
-					<p>Copyright &copy; 2014 Aram Baghdasaryan. All rights reserved.</p>
+					<p>Copyright &copy; 2014 <a href="http://jiromm.com/"  target="_blank">Aram Baghdasaryan</a>, <a href="http://armenghazarian.com/" target="_blank">Armen Ghazaryan</a>. All rights reserved.</p>
 				</div>
 			</div>
 		</div>

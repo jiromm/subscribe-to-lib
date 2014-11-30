@@ -4,14 +4,10 @@ html {
 }
 body {
 	font: 16px 'Droid Serif', serif;
+	color: #555;
 }
 .headline {
-	background: #449ad4 url(../img/bg_ed.jpg) no-repeat;
-	text-shadow: 1px 1px 0 rgba(2, 11, 13, 0.63);
-	background-size: cover;
-	padding: 100px 0;
 	text-align: center;
-	color: #fff;
 }
 .headline h1 {
 	font-weight: bold;
@@ -24,11 +20,7 @@ body {
 	font-style: italic;
 }
 .subscribe-action {
-	background-color: #EAC638;
 	padding: 50px 0;
-	border-top: 1px solid rgba(5, 53, 93, 0.67);
-	box-shadow: inset 0 1px 0 rgba(255, 255, 255, .8);
-	text-shadow: 0 1px 1px rgba(255, 255, 255, .26);
 }
 .subscribe-action .text-muted {
 	color: inherit;
@@ -47,50 +39,12 @@ body {
 	border-radius: 1px;
 	border-color: rgba(0,0,0,.43);
 }
-.subscribe-action .btn {
-	background-color: #3b82bc;
-	text-shadow: 1px 1px 0 rgba(2, 11, 13, 0.63);
-}
 .subscribe-action .form-control:focus {
 	box-shadow: none;
 	background-color: rgba(255, 255, 255, .6);
 }
 .subscribe-action .form-control {
 	background-color: rgba(255, 255, 255, .3);
-}
-.subscribe-action.affix {
-	top: 0;
-	width: 100%;
-	padding: 10px 0;
-	z-index: 1000;
-}
-.subscribe-action.affix p,
-.subscribe-action.affix #subscribe h1 {
-	display: none;
-}
-.subscribe-action .plane-container {
-	padding: 15px;
-	border-radius: 100%;
-	background: rgba(234, 218, 104, 0.5);
-	position: relative;
-	right: -90px;
-}
-.subscribe-action.affix .plane-container {
-	padding: 8px;
-	right: -120px;
-}
-.subscribe-action .plane-container img {
-	width: 100%;
-}
-.subscribe-action.affix h1,
-.subscribe-action.affix h3 {
-	font-size: 90%;
-}
-.subscribe-action.affix h1 {
-	font-size: 110%;
-}
-.subscribe-action.affix .relative {
-	width: 77px;
 }
 .home-section {
 	padding: 50px 0;
@@ -115,6 +69,16 @@ footer {
 footer p {
 	margin: 0;
 }
+footer a,
+footer a:active,
+footer a:link,
+footer a:visited,
+footer a:hover {
+	color: #d4d4d4;
+}
+footer a:hover {
+	text-decoration: underline;
+}
 .notification-icon {
 	display: block;
 	margin: 17px;
@@ -126,30 +90,13 @@ footer p {
 }
 .sync-notification {
 	text-align: center;
-	background-color: rgb(42, 130, 162);
+	background-color: rgb(243, 250, 255);
 	border-radius: 0 !important;
 	overflow: hidden !important;
 }
 .title-libraries,
 .title-story {
 	position: relative;
-}
-h2.title:before {
-	content: '';
-	position: absolute;
-	left: -90px;
-	top: -25px;
-	display: block;
-	width: 80px;
-	height: 80px;
-	background-size: 50%;
-	border-radius: 50%;
-}
-.title-libraries:before {
-	background: rgba(58, 232, 95, 0.42) url('../img/subscribe.png') center center no-repeat;
-}
-.title-story:before {
-	background: rgba(232, 155, 11, 0.42) url('../img/story.png') center center no-repeat;
 }
 .approve-button {
 	border-radius: 100%;
