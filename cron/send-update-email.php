@@ -58,6 +58,7 @@ try {
 			$template = file_get_contents(dirname(__DIR__) . '/template/update.htm');
 			$template = str_replace('{{unsubscribe}}', "{$domain}/unsubscribe.php?email={$email}&hash={$hash}", $template);
 			$template = str_replace('{{website}}', $domain, $template);
+			$template = str_replace('{{project}}', $projectName, $template);
 			$template = str_replace('{{libs}}', $libs, $template);
 
 			$mail = new Email($smtpHost, $smtpPort);
@@ -65,7 +66,7 @@ try {
 			$mail->setLogin($smtpEmail, $smtpPassword);
 			$mail->addTo($tempTo);
 			$mail->setFrom($smtpEmail);
-			$mail->setSubject('Yoyo Updates');
+			$mail->setSubject('Good news! You have an UPDATE! ' . $projectName);
 			$mail->setMessage($template, true);
 
 			if ($mail->send()) {

@@ -31,6 +31,7 @@ try {
 			$template = file_get_contents(dirname(__DIR__) . '/template/welcome.htm');
 			$template = str_replace('{{unsubscribe}}', "{$domain}/unsubscribe.php?email={$email}&hash={$hash}", $template);
 			$template = str_replace('{{website}}', $domain, $template);
+			$template = str_replace('{{project}}', $projectName, $template);
 			$template = str_replace('{{libs}}', $libs, $template);
 
 			$mail = new Email($smtpHost, $smtpPort);
@@ -38,7 +39,7 @@ try {
 			$mail->setLogin($smtpEmail, $smtpPassword);
 			$mail->addTo($tempTo);
 			$mail->setFrom($smtpEmail);
-			$mail->setSubject('Yoyo Subscription');
+			$mail->setSubject('You Subscribed to ' . $projectName);
 			$mail->setMessage($template, true);
 
 			if ($mail->send()) {
