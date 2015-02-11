@@ -15,6 +15,7 @@ $(function() {
 
 	$('a[data-toggle=tooltip]').tooltip();
 
+
 	subscribeButton.on('init', function(e, realClick, silent) {
 		var status = $(this).attr('data-status'),
 			alias = $(this).attr('data-alias'),
@@ -90,6 +91,7 @@ $(function() {
 		e.preventDefault();
 
 		$(this).trigger('init', [true, false]);
+		$(document).trigger('subscribed-count');
 	});
 
 	approveButton.on('click', function(e) {
@@ -125,6 +127,7 @@ $(function() {
 							oldVersion = simpleStorage.get(list[index]);
 
 						self.trigger('init', [false, false]);
+						$(document).trigger('subscribed-count');
 
 						if (self.attr('data-version') != oldVersion) {
 							parent
@@ -282,28 +285,77 @@ $(function() {
 		$(document).trigger('subscribed');
 	}
 
-	$('.subscribe-action').on('affixed-top.bs.affix', function() {
-		$('.home-section').css('margin-top', 0);
-	}).on('affixed.bs.affix', function() {
-		$('.home-section').css('margin-top', 140);
-	});
-
 	// Live search
 	var db = TAFFY(data);
-
-	$('.channel').hide();
-
-	db().limit(10).each(function (r) {
-		$('.channel[data-id=' + r.id + ']').show();
-	});
 
 	$('.live-search').on('keyup', function() {
 		var val = $(this).val();
 
 		$('.channel').hide();
+		$('.title-libraries a').attr('data-status', 0);
+		$('.show-all').attr('data-status', 1);
 
 		db([{lower: {like: val}}, {name: {like: val}}, {alias: {like: val}}]).limit(10).each(function (r) {
 			$('.channel[data-id=' + r.id + ']').show();
 		});
 	});
+
+	$('.show-subscribed').on('click', function(e) {
+		e.preventDefault();
+
+		$(document).trigger('draw-subscribed');
+	});
+
+	$('.show-all').on('click', function(e) {
+		e.preventDefault();
+
+		$(document).trigger('draw-all');
+	});
+
+	$(document).on('draw-all', function() {
+		$(document).trigger('prepare-to-draw');
+
+		$('.show-all').attr('data-status', 1);
+		$('.section-heading').removeClass('full-height');
+
+		db().limit(10).each(function (r) {
+			$('.channel[data-id=' + r.id + ']').show();
+		});
+	});
+
+	$(document).on('draw-subscribed', function() {
+		$(document).trigger('prepare-to-draw');
+
+		$('.show-subscribed').attr('data-status', 1);
+		$('.section-heading').addClass('full-height');
+
+		db().each(function (r) {
+			var chItem = $('.channel[data-id=' + r.id + ']');
+
+			if (parseInt(chItem.find('.subscribe-button').attr('data-status'))) {
+				chItem.show();
+			}
+		});
+	});
+
+	$(document).on('prepare-to-draw', function() {
+		$('.title-libraries a').attr('data-status', 0);
+		$('.channel').hide();
+		$('.live-search').val('');
+	});
+
+	$(document).on('subscribed-count', function() {
+		var counter = 0;
+
+		$('.channel').each(function() {
+			if (parseInt($(this).find('.subscribe-button').attr('data-status'))) {
+				counter++;
+			}
+		});
+
+		$('.subscribed-count').text(counter);
+	});
+
+	$(document).trigger('draw-all');
+	$(document).trigger('subscribed-count');
 });

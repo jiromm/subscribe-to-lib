@@ -69,7 +69,12 @@ $libraries = include(dirname(__DIR__) . '/general/get-libraries.php');
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-offset-2 col-sm-8">
-					<h2 class="title title-libraries">Libraries <small>(<?php echo count($libraries); ?>)</small></h2>
+					<h2 class="title title-libraries">
+						<a href="#" class="show-all" data-status="1">All Libraries</a>
+						<small>(<?php echo count($libraries); ?>)</small>
+
+						<small><a href="#" class="show-subscribed" data-status="0">Show only Subscribed</a> (<span class="subscribed-count"></span>)</small>
+					</h2>
 
 					<div class="row">
 						<div class="col-md-8 col-lg-7">
