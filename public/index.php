@@ -119,7 +119,7 @@ $libraries = include(dirname(__DIR__) . '/general/get-libraries.php');
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12">
-					<p>Copyright &copy; 2014 <a href="http://jiromm.com/"  target="_blank">Aram Baghdasaryan</a>, <a href="http://armenghazarian.com/" target="_blank">Armen Ghazaryan</a>. All rights reserved.</p>
+					<p>Copyright &copy; 2015 <a href="http://jiromm.com/"  target="_blank">Aram Baghdasaryan</a>, <a href="http://armenghazarian.com/" target="_blank">Armen Ghazaryan</a>. All rights reserved.</p>
 				</div>
 			</div>
 		</div>
