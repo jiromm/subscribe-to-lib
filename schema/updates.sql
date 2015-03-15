@@ -1,6 +1,6 @@
 insert into library set
-	alias = 'jqueryfileupload',
-	name = 'jQuery File Upload',
-	author = 'Sebastian Tschan',
-	link = 'https://blueimp.github.io/jQuery-File-Upload/',
-	version = '9.8.0';
+	alias = 'bootstrapdatepicker',
+	name = 'Date Picker for Bootstrap',
+	author = 'Andrew Rowls',
+	link = 'https://github.com/eternicode/bootstrap-datepicker',
+	version = '1.5.0';
